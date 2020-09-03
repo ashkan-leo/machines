@@ -45,7 +45,7 @@ in {
       Clicking = true;
       FirstClickThreshold = 2;
       SecondClickThreshold = 0;
-      TrackpadThreeFingerDrag = true;
+      TrackpadThreeFingerDrag = false;
     };
 
   };
