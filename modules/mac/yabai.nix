@@ -26,9 +26,10 @@
       # mouse_action2 = "resize";
       # window_shadow = "float";
 
+      # FIXME turning on opacity will cause the OS to crash
       # window_opacity = "on";
-      # active_window_opacity = 0.95;
-      # normal_window_opacity = 0.88;
+      # active_window_opacity = 0.98;
+      # normal_window_opacity = 0.9;
     };
   };
 }
