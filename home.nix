@@ -20,6 +20,7 @@
   # paths it should manage.
   home.username = "ashkanaleali";
   home.homeDirectory = "/Users/ashkanaleali";
+  home.sessionVariables = import ./modules/env/vars.nix;
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
