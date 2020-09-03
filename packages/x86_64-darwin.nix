@@ -28,6 +28,7 @@ with pkgs; [
   jq
   fzf
   tealdeer
+  most
 
   ###
   ### Hacking
