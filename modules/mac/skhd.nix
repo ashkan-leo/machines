@@ -50,6 +50,18 @@
       ## destroy space
       fn - q : yabai -m space --destroy
 
+      ## focus display
+      cmd - ] : yabai -m display next --focus
+      cmd - [ : yabai -m display prev --focus
+
+      ## throw window to display
+      cmd + shift - ] : yabai -m window next --display
+      cmd + shift - [ : yabai -m window prev --display
+
+      ## throw space to display
+      cmd + alt - ] : yabai -m space next --display
+      cmd + alt - [ : yabai -m space prev --display
+
       ## fast focus space
       fn - x : yabai -m space --focus recent
       fn - z : yabai -m space --focus prev
