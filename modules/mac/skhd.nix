@@ -50,15 +50,21 @@
       ## make floating window fill right-half of screen
       alt + cmd - right : yabai -m window --grid 1:2:1:0:1:1
 
-      # ## focus display
+      ## focus display
       cmd + alt - r : yabai -m display --focus next
       cmd + alt - q : yabai -m display --focus prev
 
-      # ## throw window to display
+      ## throw window to display
       cmd + alt - i : yabai -m window --display next
       cmd + alt - o : yabai -m window --display prev
 
-      # ## throw space to display
+      ## throw window to display and follow focus
+      cmd + ctrl - i : yabai -m window --display next;\
+                      yabai -m display --focus next
+      cmd + ctrl - o : yabai -m window --display prev;\
+                      yabai -m display --focus prev
+
+      ## throw space to display and follow focus
       cmd + alt + shift - i : yabai -m space --display next
       cmd + alt + shift - o : yabai -m space --display prev
 
