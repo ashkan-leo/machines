@@ -29,11 +29,13 @@ with pkgs; [
   fzf
   tealdeer
   most
+  # xscreensaver
 
   ###
   ### Hacking
   ###
   #
+
   #Scala
   scala
   ammonite
