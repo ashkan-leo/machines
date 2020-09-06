@@ -9,8 +9,7 @@
 
     ./modules/term/kitty.nix
     ./modules/term/alacritty.nix
-    ./modules/term/tmux.nix
-
+    ./modules/term/oh-my-tmux.nix
   ];
 
   # Let Home Manager install and manage itself.
