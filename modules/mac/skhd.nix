@@ -26,14 +26,14 @@
       alt + shift - l : yabai -m window --swap east
 
       ## change size of windows
-      rcmd + ralt - d : yabai -m window --resize top:0:-40;\
-                        yabai -m window --resize bottom:0:-40
-      rcmd + ralt - a : yabai -m window --resize left:-40:0;\
-                        yabai -m window --resize right:-40:0
-      rcmd + ralt - s : yabai -m window --resize bottom:0:40;\
-                        yabai -m window --resize top:0:40
-      rcmd + ralt - h : yabai -m window --resize right:40:0;\
-                        yabai -m window --resize left:40:0
+      cmd + alt - d : yabai -m window --resize top:0:-40;\
+                      yabai -m window --resize bottom:0:-40
+      cmd + alt - a : yabai -m window --resize left:-40:0;\
+                      yabai -m window --resize right:-40:0
+      cmd + alt - s : yabai -m window --resize bottom:0:40;\
+                      yabai -m window --resize top:0:40
+      cmd + alt - h : yabai -m window --resize right:40:0;\
+                      yabai -m window --resize left:40:0
 
       ## balance size of windows
       alt + shift - 0 : yabai -m space --balance
