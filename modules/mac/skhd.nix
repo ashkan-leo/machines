@@ -7,6 +7,9 @@
 
       # yabai
 
+      # The fn modifier has cmd + alt + ctrl alternative
+      # Since my Razer keyboard doesn't have a fn key
+
       ## focus windows
       cmd + shift - h : yabai -m window --focus west
       cmd + shift - j : yabai -m window --focus south
@@ -73,6 +76,19 @@
       fn - 8 : yabai -m space --focus 8
       fn - 9 : yabai -m space --focus 9
       fn - 0 : yabai -m space --focus 10
+      cmd + alt + ctrl - x : yabai -m space --focus recent
+      cmd + alt + ctrl - z : yabai -m space --focus prev
+      cmd + alt + ctrl - m : yabai -m space --focus next
+      cmd + alt + ctrl - 1 : yabai -m space --focus 1
+      cmd + alt + ctrl - 2 : yabai -m space --focus 2
+      cmd + alt + ctrl - 3 : yabai -m space --focus 3
+      cmd + alt + ctrl - 4 : yabai -m space --focus 4
+      cmd + alt + ctrl - 5 : yabai -m space --focus 5
+      cmd + alt + ctrl - 6 : yabai -m space --focus 6
+      cmd + alt + ctrl - 7 : yabai -m space --focus 7
+      cmd + alt + ctrl - 8 : yabai -m space --focus 8
+      cmd + alt + ctrl - 9 : yabai -m space --focus 9
+      cmd + alt + ctrl + shift - 0 : yabai -m space --focus 10
 
       ## send window to space and follow focus
       fn + shift - x : yabai -m window --space recent;\
@@ -101,20 +117,55 @@
                        yabai -m space --focus 9
       fn + shift - 0 : yabai -m window --space 10;\
                        yabai -m space --focus 10
+      cmd + alt + ctrl + shift - x : yabai -m window --space recent;\
+                       yabai -m space --focus recent
+      cmd + alt + ctrl + shift - z : yabai -m window --space prev;\
+                       yabai -m space --focus prev
+      cmd + alt + ctrl + shift - m : yabai -m window --space next;\
+                       yabai -m space --focus next
+      cmd + alt + ctrl + shift - 1 : yabai -m window --space  1;\
+                       yabai -m space --focus 1
+      cmd + alt + ctrl + shift - 2 : yabai -m window --space  2;\
+                       yabai -m space --focus 2
+      cmd + alt + ctrl + shift - 3 : yabai -m window --space  3;\
+                       yabai -m space --focus 3
+      cmd + alt + ctrl + shift - 4 : yabai -m window --space  4;\
+                       yabai -m space --focus 4
+      cmd + alt + ctrl + shift - 5 : yabai -m window --space  5;\
+                       yabai -m space --focus 5
+      cmd + alt + ctrl + shift - 6 : yabai -m window --space  6;\
+                       yabai -m space --focus 6
+      cmd + alt + ctrl + shift - 7 : yabai -m window --space  7;\
+                       yabai -m space --focus 7
+      cmd + alt + ctrl + shift - 8 : yabai -m window --space  8;\
+                       yabai -m space --focus 8
+      cmd + alt + ctrl + shift - 9 : yabai -m window --space  9;\
+                       yabai -m space --focus 9
+      cmd + alt + ctrl + shift - 0 : yabai -m window --space 10;\
+                       yabai -m space --focus 10
 
       ## destroy space
       fn - q : yabai -m space --destroy
+
+      cmd + alt + ctrl - q : yabai -m space --destroy
 
       ## create space, move window and follow focus
       fn + shift - a : yabai -m space --create && \
                               index="$(yabai -m query --spaces --display | jq 'map(select(."native-fullscreen" == 0))[-1].index')" && \
                               yabai -m window --space "''${index}" && \
                               yabai -m space --focus "''${index}"
+      cmd + alt + ctrl + shift - a : yabai -m space --create && \
+                                     index="$(yabai -m query --spaces --display | jq 'map(select(."native-fullscreen" == 0))[-1].index')" && \
+                                     yabai -m window --space "''${index}" && \
+                                     yabai -m space --focus "''${index}"
 
       ## create space and follow focus
       fn + shift - s : yabai -m space --create;\
                        index="$(yabai -m query --displays --display | jq '.spaces[-1]')" && \
                        yabai -m space --focus "''${index}"
+      cmd + alt + ctrl + shift - s : yabai -m space --create;\
+                                     index="$(yabai -m query --displays --display | jq '.spaces[-1]')" && \
+                                     yabai -m space --focus "''${index}"
 
       ## rotate tree
       cmd + alt - y : yabai -m space --rotate 90
@@ -123,23 +174,31 @@
 
       ## toggle window fullscreen zoom
       fn - f : yabai -m window --toggle zoom-fullscreen
+      cmd + alt + ctrl - f : yabai -m window --toggle zoom-fullscreen
 
       ## toggle window native fullscreen
       fn + shift - f : yabai -m window --toggle native-fullscreen
+      cmd + alt + ctrl + shift - f : yabai -m window --toggle native-fullscreen
 
       ## toggle window split type
       fn - e : yabai -m window --toggle split
+      cmd + alt + ctrl - e : yabai -m window --toggle split
 
       ## float / unfloat window and center on screen
       fn - t : yabai -m window --toggle float;\
                yabai -m window --grid 4:4:1:1:2:2
+      cmd + alt + ctrl - t : yabai -m window --toggle float;\
+                             yabai -m window --grid 4:4:1:1:2:2
 
       ## toggle sticky
       fn - s : yabai -m window --toggle sticky
+      cmd + alt + ctrl - s : yabai -m window --toggle sticky
 
       ## toggle sticky, float and resize to picture-in-picture size
       fn - p : yabai -m window --toggle sticky;\
                yabai -m window --grid 5:5:4:0:1:1
+      cmd + alt + ctrl - p : yabai -m window --toggle sticky;\
+                             yabai -m window --grid 5:5:4:0:1:1
     '';
   };
 }
