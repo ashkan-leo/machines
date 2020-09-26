@@ -284,7 +284,7 @@ tmux_conf_copy_to_os_clipboard=true
 #set -g history-limit 10000
 
 # start with mouse mode enabled
-#set -g mouse on
+set -g mouse on
 
 # force Vi mode
 set -g status-keys vi
