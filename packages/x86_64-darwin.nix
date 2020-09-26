@@ -36,14 +36,17 @@ with pkgs; [
   ###
   #
 
-  #Scala
+  # Development utilities
+  cookiecutter
+
+  # Scala
   scala
   ammonite
   sbt-extras
   bloop
   metals
 
-  #Nix
+  # Nix
   nixfmt
 
   # Kubernetese
