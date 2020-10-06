@@ -60,6 +60,9 @@ with pkgs; [
   # Web
   hugo
 
+  # LaTEX
+  texlive.combined.scheme-full
+
   ###
   ### Stuff
   ###
