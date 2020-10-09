@@ -7,8 +7,10 @@
 
       # yabai
 
-      # The fn modifier has cmd + alt + ctrl alternative
-      # Since my Razer keyboard doesn't have a fn key
+      # The fn modifier has shift + alt + ctrl alternative
+      # This is equivalent to "Meh"
+      # The shift + fn has shift + alt + ctrl + cmd alternative
+      # This is equivalent to "Hyper"
 
       ## focus windows
       cmd + shift - h : yabai -m window --focus west
@@ -82,19 +84,21 @@
       fn - 8 : yabai -m space --focus 8
       fn - 9 : yabai -m space --focus 9
       fn - 0 : yabai -m space --focus 10
-      cmd + alt + ctrl - x : yabai -m space --focus recent
-      cmd + alt + ctrl - z : yabai -m space --focus prev
-      cmd + alt + ctrl - m : yabai -m space --focus next
-      cmd + alt + ctrl - 1 : yabai -m space --focus 1
-      cmd + alt + ctrl - 2 : yabai -m space --focus 2
-      cmd + alt + ctrl - 3 : yabai -m space --focus 3
-      cmd + alt + ctrl - 4 : yabai -m space --focus 4
-      cmd + alt + ctrl - 5 : yabai -m space --focus 5
-      cmd + alt + ctrl - 6 : yabai -m space --focus 6
-      cmd + alt + ctrl - 7 : yabai -m space --focus 7
-      cmd + alt + ctrl - 8 : yabai -m space --focus 8
-      cmd + alt + ctrl - 9 : yabai -m space --focus 9
-      cmd + alt + ctrl + shift - 0 : yabai -m space --focus 10
+
+      # Meh variations
+      shift + alt + ctrl - x : yabai -m space --focus recent
+      shift + alt + ctrl - z : yabai -m space --focus prev
+      shift + alt + ctrl - m : yabai -m space --focus next
+      shift + alt + ctrl - 1 : yabai -m space --focus 1
+      shift + alt + ctrl - 2 : yabai -m space --focus 2
+      shift + alt + ctrl - 3 : yabai -m space --focus 3
+      shift + alt + ctrl - 4 : yabai -m space --focus 4
+      shift + alt + ctrl - 5 : yabai -m space --focus 5
+      shift + alt + ctrl - 6 : yabai -m space --focus 6
+      shift + alt + ctrl - 7 : yabai -m space --focus 7
+      shift + alt + ctrl - 8 : yabai -m space --focus 8
+      shift + alt + ctrl - 9 : yabai -m space --focus 9
+      shift + alt + ctrl - 0 : yabai -m space --focus 10
 
       ## send window to space and follow focus
       fn + shift - x : yabai -m window --space recent;\
@@ -123,6 +127,8 @@
                        yabai -m space --focus 9
       fn + shift - 0 : yabai -m window --space 10;\
                        yabai -m space --focus 10
+
+      # Hyper variations
       cmd + alt + ctrl + shift - x : yabai -m window --space recent;\
                        yabai -m space --focus recent
       cmd + alt + ctrl + shift - z : yabai -m window --space prev;\
@@ -153,7 +159,7 @@
       ## destroy space
       fn - q : yabai -m space --destroy
 
-      cmd + alt + ctrl - q : yabai -m space --destroy
+      shift + alt + ctrl - q : yabai -m space --destroy
 
       ## create space, move window and follow focus
       fn + shift - a : yabai -m space --create && \
@@ -180,7 +186,7 @@
 
       ## toggle window fullscreen zoom
       fn - f : yabai -m window --toggle zoom-fullscreen
-      cmd + alt + ctrl - f : yabai -m window --toggle zoom-fullscreen
+      shift + alt + ctrl - f : yabai -m window --toggle zoom-fullscreen
 
       ## toggle window native fullscreen
       fn + shift - f : yabai -m window --toggle native-fullscreen
@@ -188,22 +194,22 @@
 
       ## toggle window split type
       fn - e : yabai -m window --toggle split
-      cmd + alt + ctrl - e : yabai -m window --toggle split
+      shift + alt + ctrl - e : yabai -m window --toggle split
 
       ## float / unfloat window and center on screen
       fn - t : yabai -m window --toggle float;\
                yabai -m window --grid 4:4:1:1:2:2
-      cmd + alt + ctrl - t : yabai -m window --toggle float;\
+      shift + alt + ctrl - t : yabai -m window --toggle float;\
                              yabai -m window --grid 4:4:1:1:2:2
 
       ## toggle sticky
       fn - s : yabai -m window --toggle sticky
-      cmd + alt + ctrl - s : yabai -m window --toggle sticky
+      shift + alt + ctrl - s : yabai -m window --toggle sticky
 
       ## toggle sticky, float and resize to picture-in-picture size
       fn - p : yabai -m window --toggle sticky;\
                yabai -m window --grid 5:5:4:0:1:1
-      cmd + alt + ctrl - p : yabai -m window --toggle sticky;\
+      shift + alt + ctrl - p : yabai -m window --toggle sticky;\
                              yabai -m window --grid 5:5:4:0:1:1
     '';
   };

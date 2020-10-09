@@ -282,6 +282,17 @@ with lib; {
         };
       }
 
+      # https://github.com/acomagu/fish-async-prompt
+      {
+        name = "async-prompt";
+        src = fetchFromGitHub {
+          owner = "acomagu";
+          repo = "fish-async-prompt";
+          rev = "HEAD";
+          sha256 = "18nxl53nc0hwpilgp2izz89mjmklh1r2iaacz9lw5kg4xw2h75hc";
+        };
+      }
+
     ];
   };
 }
