@@ -9,11 +9,10 @@ SUB_COMMAND=$1
 if [[ "$SUB_COMMAND" == "uninstall" ]]; then
     echo "Uninstalling nix-darwin and nix package manager"
     echo "This will not remove any configuration file from the system"
-
     cd /tmp
 
     # uninstall nix-darwin if it exists
-    if command -v darwin-rebuild &> /dev/null
+    if command -v nix-build &> /dev/null
     then
         echo "Uninstalling Nix Darwin"
         nix-build https://github.com/LnL7/nix-darwin/archive/master.tar.gz -A uninstaller
@@ -45,11 +44,7 @@ if [[ "$SUB_COMMAND" == "uninstall" ]]; then
         sudo mv /etc/zshrc.backup-before-nix /etc/zshrc
     fi
 
-    # remove the configuration file
-    # TODO is this the best place to do this?
-    # rm ~/.config/nix/nix.conf 2> /dev/null
-
-    echo "Uninstall concluded"
+    echo "Done!"
 
     # If you are on Linux with systemd, you will need to run:
     # TODO enable linux functionalities
@@ -62,14 +57,14 @@ if [[ "$SUB_COMMAND" == "uninstall" ]]; then
 
 elif [[ "$SUB_COMMAND" == "install" ]]; then
 
-    # TODO do reasonable handleing of these variables
-    HOST_NAME=$2
-
     # Do all the dirty work in the tmp directory
     cd /tmp/
 
+    HOST_NAME=$2
+
     # Install nix package manager
     curl -L https://nixos.org/nix/install > /tmp/nix_install.sh
+    # T-2 Chip on the macbook encrypts by itself?
     sh /tmp/nix_install.sh --daemon --darwin-use-unencrypted-nix-store-volume
 
     # NOTE Fix potential error 
@@ -81,33 +76,33 @@ elif [[ "$SUB_COMMAND" == "install" ]]; then
     nix-shell -p nix-info --run "nix-info -m"
 
     # Install and enable nix flakes
+    # NOTE thi will be part of nix in the future
     nix-env -iA nixpkgs.nixFlakes
     echo "experimental-features = nix-command flakes" | sudo tee -a /etc/nix/nix.conf
     nix-shell -p nix-info --run "nix-info -m"
 
-    # Install nix-darwin
+    # TODO do we need this?
     # sudo ln -s private/var/run /run
 
-    # TODO Install nix flake
-    # NOTE will be part of nix in the future
+    # Bootstrap the system given the host name
+    # TODO generalize to non-darwin systems
+    # TODO figure out how to resolve issues for dirty worktree
+    nix build "/../\#darwinConfigurations.${HOST_NAME}.system" --experimental-features "nix-command flakes"
 
-    # TODO the following scripts did not work for mac OS 11.1 at the time of writing.
-    # curl -L https://github.com/numtide/nix-flakes-installer/releases/download/nix-3.0pre20200804_ed52cf6/install > nix_flake_install.sh
+    # Remove the certificate nix-darwin contain if it exist
+    sudo rm  /etc/ssl/certs/ca-certificates.crt 2> /dev/null
+
+    # Backup the files nix-darwin will overwrite if they exist
+    # sudo mv /etc/zshrc /etc/zshrc.backup-before-nix-darwin 2> /dev/null
+    # sudo mv /etc/bashrc /etc/bashrc.backup-before-nix-darwin 2> /dev/null
+    # sudo mv /etc/nix/nix.conf /etc/nix/nix.conf.backup-before-nix-darwin 2> /dev/null
+
+    # Activate the nix-darwin configuration    
+    ./result/sw/bin/darwin-rebuild switch --flake ../
+
+    # TODO the following script did not work for mac OS 11.1 at the time of writing.
     # curl -L https://github.com/numtide/nix-flakes-installer/releases/download/nix-2.4pre20201221_9fab14a/install > nix_flake_install.sh
     # sh nix_flake_install.sh
-
-    # nix-env -iA nixpkgs.nixFlakes
-    # mkdir -p ~/.config/nix
-    # echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
-
-    # nix build "${DIR}/../\#darwinConfigurations.${HOST_NAME}.system"
-    # ./result/sw/bin/darwin-rebuild switch --flake ~/.config/darwin
-
-    # Configure the darwin channel
-    # nix-channel --add https://github.com/LnL7/nix-darwin/archive/master.tar.gz darwin
-    # nix-channel --update
-    # export NIX_PATH=darwin-config=$HOME/.nixpkgs/darwin-configuration.nix:$HOME/.nix-defexpr/channels:$NIX_PATH
-    # sh <() --daemon
 else
     echo "ERROR: Undefined Action."
 fi

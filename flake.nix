@@ -1,5 +1,5 @@
 {
-  description = "Zebra Darwin System";
+  description = "Ashkan's Nix Machines";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -19,14 +19,22 @@
     };
 
     # flake-utils.url = "github:numtide/flake-utils";
-};
+  };
 
-  outputs = input @ { self, darwin, nixpkgs, home-manager, ... }: {
+  outputs = input @ { self, darwin, nixpkgs, home-manager, ... }: 
+   let
+    configuration = { pkgs, ... }: {
+      nix.package = pkgs.nixFlakes;
+      services.nix-daemon.enable = true;
+    };
+  in
+  {
     darwinConfigurations = {
-      zebra = darwin.lib.darwinSystem {
-        modules = [ ./modules/hosts/zebra/configuration.nix ];
+      "zebra.lan" = darwin.lib.darwinSystem {
+        modules = [ configuration ./modules/hosts/zebra/configuration.nix ];
         inputs = { inherit darwin nixpkgs home-manager; };
       };
     };
   };
+
 }

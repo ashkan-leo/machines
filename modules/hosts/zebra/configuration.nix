@@ -7,8 +7,8 @@ let
 in {
 
   imports = [
-    ../mac/yabai.nix
-    ../mac/skhd.nix
+    # ../mac/yabai.nix
+    # ../mac/skhd.nix
 
     # ../mac/emacs-daemon.nix
     # ../modules/db/mongodb.nix
@@ -145,7 +145,7 @@ in {
   # launchd.deamons = ...
 
   environment = {
-    variables = import ../env/vars.nix;
+    variables = import ../../env/vars.nix;
 
     systemPackages = with pkgs; [
       emacsMacport
@@ -194,6 +194,8 @@ in {
   services.lorri.enable = true;
 
   # programs.fish.enable = true;
+  programs.bash.enable = true;
+  programs.zsh.enable = true;
 
   # FIXME the nixpkgs configuration is duplicated in home.nix as well
   nixpkgs = {
