@@ -8,10 +8,10 @@ let
 in {
 
   imports = [
-    ../../modules/mac/yabai.nix
-    ../../modules/mac/skhd.nix
+    # ../mac/yabai.nix
+    # ../mac/skhd.nix
 
-    ../../modules/mac/emacs-daemon.nix
+    # ../mac/emacs-daemon.nix
     # ../modules/db/mongodb.nix
   ];
 
@@ -146,7 +146,7 @@ in {
   # launchd.deamons = ...
 
   environment = {
-    variables = import ../../modules/env/vars.nix;
+    variables = import ../env/vars.nix;
 
     systemPackages = with pkgs; [
       emacsMacport
