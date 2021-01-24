@@ -75,7 +75,7 @@
         };
       };
 
-      visual_bell = {
+      bell = {
         animation = "EaseOutExpo";
         color = "0xffffff";
         duration = 0;
@@ -86,7 +86,16 @@
         vi_mode_style = "Block";
       };
 
-      shell = { program = "fish"; };
+      shell = {
+        # Use fish as the default shell
+        program = "fish";
+        # Auto start tmux or attach to the server if it's running
+        args = [
+          "-l"
+          "-c"
+          "tmux attach-session -t Z || tmux new-session -t Z && tmux attach-session -t Z"
+        ];
+      };
 
       mouse.hide_when_typing = true;
       selection.save_to_clipboard = true;

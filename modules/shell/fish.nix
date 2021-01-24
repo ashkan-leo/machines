@@ -8,38 +8,27 @@ with lib; {
       source $f
     end
   '';
+
+  # FIXME this doesn't work
+  # define custom keybindings
+  xdg.configFile."fish/functions/fish_user_key_bindings.fish".text = mkAfter ''
+    function fish_user_key_bindings
+      bind \cs 'pet-select --layout=bottom-up'
+    end
+  '';
   programs.fish = {
     enable = true;
 
-    shellAliases = {
-      ".." = "cd ..";
-      "..." = "cd ../..";
-      "...." = "cd ../../..";
-      h = "home-manager";
-      n = "nix-env";
-      dar = "darwin-rebuild";
-      dao = "darwin-option";
-      python = "python3";
-      pip = "pip3";
-      g = "git";
-    };
+    shellAliases = import ./aliases.nix;
 
-    shellAbbrs = {
-      l = "less";
-      p = "pet exec";
-      cdw = "cd ~/w/";
-      gco = "git checkout";
-      nixin = "nix-env -iA nixpkgs.";
-      nixun = "nix-env -e nixpkgs.";
-      nixqi = "nix-env --query --installed";
-      darb = "darwin-rebuild build";
-      dars = "darwin-rebuild switch";
-      ddd = "darwin-rebuild build && darwin-rebuild switch";
-      hb = "home-manager build";
-      hs = "home-manager switch";
-      hhh = "home-manager build && home-manager switch";
-      "+x" = "chmod +x";
-    };
+    shellAbbrs = import ./abbreviations.nix;
+
+    # define the custom keybindings
+    # interactiveShellInit = ''
+    #   function fish_user_key_bindings
+    #     bind \cs 'pet-select --layout=bottom-up'
+    #   end
+    # '';
 
     plugins = with pkgs; [
 
@@ -283,15 +272,17 @@ with lib; {
       }
 
       # https://github.com/acomagu/fish-async-prompt
-      {
-        name = "async-prompt";
-        src = fetchFromGitHub {
-          owner = "acomagu";
-          repo = "fish-async-prompt";
-          rev = "HEAD";
-          sha256 = "18nxl53nc0hwpilgp2izz89mjmklh1r2iaacz9lw5kg4xw2h75hc";
-        };
-      }
+      # NOTE this extension ignores prompt theme variables
+      # NOTE and is unpredictable specially when using tmux
+      # {
+      #   name = "async-prompt";
+      #   src = fetchFromGitHub {
+      #     owner = "acomagu";
+      #     repo = "fish-async-prompt";
+      #     rev = "HEAD";
+      #     sha256 = "18nxl53nc0hwpilgp2izz89mjmklh1r2iaacz9lw5kg4xw2h75hc";
+      #   };
+      # }
 
     ];
   };

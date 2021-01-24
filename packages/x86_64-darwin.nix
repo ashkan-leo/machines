@@ -7,18 +7,60 @@ with pkgs; [
   ###
   #
   coreutils
+  graphviz
+  mosh
+  tcl
+
+  # text search & manipulation programs
   gawk
+  jsawk
+  ack
   ripgrep
   ripgrep-all
+  silver-searcher
   findutils
   fd
-  broot
-  ispell
+
+  ###
+  ### Natural Language
+  ###
+  #
+
+  # spell checkers
+  enchant
   aspell
+  aspellDicts.de
   aspellDicts.en
+  aspellDicts.en-science
+  aspellDicts.en-computers
+  hunspell
+  hunspellDicts.en_US-large
+  hunspellDicts.de_AT
+
+  # proofreading
+  languagetool
+
+  # linter
+  proselint
+
+  ###
+  ### markdown
+  ###
+  #
+  mdl
+
+  # file system tools
   exa
   lsd
+  ranger
+
   exiftool
+  gitAndTools.gh
+  gitAndTools.grv
+  gitAndTools.gita
+  gitAndTools.ghorg
+  gitAndTools.git-open
+  gitAndTools.gh
   git-lfs
   wget
   w3m
@@ -38,30 +80,62 @@ with pkgs; [
 
   # Development utilities
   cookiecutter
+  fswatch
+
+  # Jupyter
+  python39Packages.jupyter
+  python39Packages.jupyterlab
+  python39Packages.jupyterlab-git
+  python39Packages.jupyterlab_launcher
+  python39Packages.jupyterlab-pygments
+  python39Packages.jupyterlab-pygments
+
 
   # Scala
   scala
   ammonite
   sbt-extras
-  bloop
+  # bloop
   metals
 
   # Nix
+  nixops
   nixfmt
+  nix-doc
+  manix
+  nix-prefetch-git
+  nix-prefetch-github
+
+  # Prolog
+  swiProlog
+
+  # Python
+  python39Full
+  pipenv
+  poetry
 
   # Kubernetese
   minikube
 
-  cmake
-
   # C/C++
   gcc
+  cmake
 
   # Web
   hugo
 
-  # LaTEX
+  # Haskell
+  ghc
+  cabal-install
+  stack
+  cabal2nix
+  haskellPackages.hoogle
+
+  ###
+  ### Type Setting
+  ###
   texlive.combined.scheme-full
+  pandoc
 
   ###
   ### Stuff
@@ -76,14 +150,6 @@ with pkgs; [
   ### emacs pdf-tools
   ###
   #
-  stdenv
-  pkgconfig
-  autoconf
-  automake
-  libpng
-  zlib
-  poppler
-  poppler_gi
 
   ###
   ### Fonts

@@ -10,6 +10,15 @@
     ./modules/term/kitty.nix
     ./modules/term/alacritty.nix
     ./modules/term/oh-my-tmux.nix
+    # ./modules/term/pet.nix
+
+    # TODO implement spark
+    # ./modules/tools/sparkling.nix
+
+    # FIXME emacs causes yabai become unresponsive
+    # FIXME for now use the homebrew installation
+    # TODO fix the nix emacs installation and achieve nirvana
+    # ./modules/editor/emacs.nix
   ];
 
   # Let Home Manager install and manage itself.
@@ -29,15 +38,26 @@
   # the Home Manager release notes for a list of state version
   # changes in each release.
   home.stateVersion = "20.09";
-  ###
-  ### Environment Variables
-  ###
-  # FIXME not working
-  # NOTE Manually doing this in fish shell config for now
-  # home.sessionVariables = { EDITOR = "gac"; };
 
   home.packages = import ./packages/x86_64-darwin.nix { inherit pkgs; };
 
-  # programs.tmux.enable = true;
+  # FIXME the nixpkgs configuration is duplicated in darwin/configuration.nix as well
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+      allowBroken = false;
+      allowUnsupportedSystem = true;
+      permittedInsecurePackages = [ "spidermonkey-38.8.0" ];
 
+    };
+
+    # TODO overlays? Do I need them?
+    # overlays =
+    #   let path = ../overlays; in with builtins;
+    #   map (n: import (path + ("/" + n)))
+    #       (filter (n: match ".*\\.nix" n != null ||
+    #                   pathExists (path + ("/" + n + "/default.nix")))
+    #               (attrNames (readDir path)))
+    #     ++ [ (import ./envs.nix) ];
+  };
 }

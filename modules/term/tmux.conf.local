@@ -187,6 +187,7 @@ tmux_conf_theme_right_separator_sub='\uE0B3'  #   PowerlineSymbols.otf font, see
 tmux_conf_theme_status_left='#{circled_session_name}'
 # tmux_conf_theme_status_right='#{prefix}#{pairing}#{synchronized} #{?battery_status, #{battery_status},}#{?battery_bar, #{battery_bar},}#{?battery_percentage, #{battery_percentage},} , %R , %d %b | #{username}#{root} | #{hostname} '
 tmux_conf_theme_status_right='#{prefix}#{pairing}#{synchronized} , %R , %d %b | #{username}#{root} | #{hostname} | #{battery_status} #{battery_vbar}  '
+# tmux_conf_theme_status_right='#{prefix}#{pairing}#{synchronized} , %R , %d %b | #{username}#{root} | #{hostname} | #{cpu_percentage} | #{battery_status} #{battery_vbar}'
 
 # status left style
 tmux_conf_theme_status_left_fg='#0a2832,#fdf5dd,#fdf5dd'  # black, white , white
@@ -299,3 +300,7 @@ set -g mode-keys vi
 
 # set status line position
 set -g status-position bottom
+
+# this comes from doom emacs :os tty module
+set -g default-terminal "xterm-256color"
+set -g terminal-overrides ',xterm-256color:Tc'

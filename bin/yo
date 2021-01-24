@@ -1,0 +1,114 @@
+#!/usr/bin/env bash
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+# Ensure `diskutil` is in $PATH
+export PATH="/usr/sbin/:$PATH"
+
+SUB_COMMAND=$1
+if [[ "$SUB_COMMAND" == "uninstall" ]]; then
+    echo "Uninstalling nix-darwin and nix package manager"
+    echo "This will not remove any configuration file from the system"
+
+    cd /tmp
+
+    # uninstall nix-darwin if it exists
+    if command -v darwin-rebuild &> /dev/null
+    then
+        echo "Uninstalling Nix Darwin"
+        nix-build https://github.com/LnL7/nix-darwin/archive/master.tar.gz -A uninstaller
+        ./result/bin/darwin-uninstaller    
+    fi
+
+    # remove all the nix related directories
+    sudo rm -rf /etc/nix /nix/* ~root/.nix-profile \
+        ~root/.nix-defexpr \
+        ~root/.nix-channels \
+        ~/.nix-profile \
+        ~/.nix-defexpr \
+        ~/.nix-channels 2> /dev/null
+
+    # If you are on macOS, you will need to run:
+    sudo launchctl unload /Library/LaunchDaemons/org.nixos.nix-daemon.plist 2> /dev/null
+    sudo rm /Library/LaunchDaemons/org.nixos.nix-daemon.plist 2> /dev/null
+
+    # revert /etc/bashrc to its form before installing NIX
+    if [[ -f "/etc/bashrc.backup-before-nix" ]]; then
+        echo "Reverting /etc/bashrc to its original form"
+        sudo mv /etc/bashrc.backup-before-nix /etc/bashrc
+    fi
+
+    # revert /etc/zshrc to its form before installing NIX
+    if [[ -f "/etc/zshrc.backup-before-nix" ]]
+    then
+        echo "Reverting /etc/zshrc to its original form"
+        sudo mv /etc/zshrc.backup-before-nix /etc/zshrc
+    fi
+
+    # remove the configuration file
+    # TODO is this the best place to do this?
+    # rm ~/.config/nix/nix.conf 2> /dev/null
+
+    echo "Uninstall concluded"
+
+    # If you are on Linux with systemd, you will need to run:
+    # TODO enable linux functionalities
+    # TODO enable nixOS functionalities
+    # sudo systemctl stop nix-daemon.socket
+    # sudo systemctl stop nix-daemon.service
+    # sudo systemctl disable nix-daemon.socket
+    # sudo systemctl disable nix-daemon.service
+    # sudo systemctl daemon-reload
+
+elif [[ "$SUB_COMMAND" == "install" ]]; then
+
+    # TODO do reasonable handleing of these variables
+    HOST_NAME=$2
+
+    # Do all the dirty work in the tmp directory
+    cd /tmp/
+
+    # Install nix package manager
+    curl -L https://nixos.org/nix/install > /tmp/nix_install.sh
+    sh /tmp/nix_install.sh --daemon --darwin-use-unencrypted-nix-store-volume
+
+    # NOTE Fix potential error 
+    # NOTE "Problem with the SSL CA cert (path? access rights?) (77)"
+    sudo rm /etc/ssl/certs/ca-certificates.crt 2> /dev/null
+    sudo ln -s /nix/var/nix/profiles/default/etc/ssl/certs/ca-bundle.crt /etc/ssl/certs/ca-certificates.crt
+
+    # Show information about current system
+    nix-shell -p nix-info --run "nix-info -m"
+
+    # Install and enable nix flakes
+    nix-env -iA nixpkgs.nixFlakes
+    echo "experimental-features = nix-command flakes" | sudo tee -a /etc/nix/nix.conf
+    nix-shell -p nix-info --run "nix-info -m"
+
+    # Install nix-darwin
+    # sudo ln -s private/var/run /run
+
+    # TODO Install nix flake
+    # NOTE will be part of nix in the future
+
+    # TODO the following scripts did not work for mac OS 11.1 at the time of writing.
+    # curl -L https://github.com/numtide/nix-flakes-installer/releases/download/nix-3.0pre20200804_ed52cf6/install > nix_flake_install.sh
+    # curl -L https://github.com/numtide/nix-flakes-installer/releases/download/nix-2.4pre20201221_9fab14a/install > nix_flake_install.sh
+    # sh nix_flake_install.sh
+
+    # nix-env -iA nixpkgs.nixFlakes
+    # mkdir -p ~/.config/nix
+    # echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
+
+    # nix build "${DIR}/../\#darwinConfigurations.${HOST_NAME}.system"
+    # ./result/sw/bin/darwin-rebuild switch --flake ~/.config/darwin
+
+    # Configure the darwin channel
+    # nix-channel --add https://github.com/LnL7/nix-darwin/archive/master.tar.gz darwin
+    # nix-channel --update
+    # export NIX_PATH=darwin-config=$HOME/.nixpkgs/darwin-configuration.nix:$HOME/.nix-defexpr/channels:$NIX_PATH
+    # sh <() --daemon
+else
+    echo "ERROR: Undefined Action."
+fi
+

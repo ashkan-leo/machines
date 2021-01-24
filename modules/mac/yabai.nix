@@ -4,7 +4,7 @@
   services.yabai = {
     enable = true;
     package = pkgs.yabai;
-    enableScriptingAddition = true; # Ensure SIP is disabled for this to work!
+    enableScriptingAddition = false; # Ensure SIP is disabled for this to work!
 
     config = {
       layout = "bsp";
@@ -22,6 +22,19 @@
       left_padding = 6;
       right_padding = 6;
       window_gap = 6;
+
+      extraConfig = ''
+        yabai -m rule --add app="System Preferences" manage=off
+        yabai -m rule --add app="1Password" manage=off
+        yabai -m rule --add app="Messages" manage=off
+        yabai -m rule --add app="Dictionary" manage=off
+        yabai -m rule --add app="Telegram" manage=off
+        yabai -m rule --add app="BetterTouchTool" manage=off
+        yabai -m rule --add app="App Store" manage=off
+        yabai -m rule --add app="FaceTime" manage=off
+        yabai -m rule --add app="Wally" manage=off
+        yabai -m rule --add app="Alfred Preferences" manage=off
+      '';
 
       # mouse_action2 = "resize";
       # window_shadow = "float";
