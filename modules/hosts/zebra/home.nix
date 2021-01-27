@@ -31,7 +31,7 @@
     lfs.enable = true;
     delta = {
       enable = true;
-      option = {
+      options = {
         features = "decorations";
         whitespace-error-style = "22 reverse";
         decorations = {
