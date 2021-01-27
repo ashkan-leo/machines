@@ -126,5 +126,6 @@ elif [[ "$SUB_COMMAND" == install ]]; then
     # # curl -L https://github.com/numtide/nix-flakes-installer/releases/download/nix-2.4pre20201221_9fab14a/install > nix_flake_install.sh
     # # sh nix_flake_install.sh
 else
-    echo "ERROR: Undefined Action."
+    echo "USAGE: yo-mac-installer uninstall"
+    echo "       yo-mac-installer install host_name"
 fi

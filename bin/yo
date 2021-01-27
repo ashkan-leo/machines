@@ -10,41 +10,41 @@ export PATH="/usr/sbin/:$PATH"
 # TODO add proper command line argument handeling
 SUB_COMMAND=$1
 
-# elif [[ "$SUB_COMMAND" == darwin ]]
-# then
-#     DARWIN_COMMAND=$2
-#     if [[ "$DARWIN_COMMAND" == switch ]]
-#     then
-#         darwin-rebuild switch --flake "$FLAKE"
+if [[ "$SUB_COMMAND" == darwin ]]
+then
+    DARWIN_COMMAND=$2
+    if [[ "$DARWIN_COMMAND" == switch ]]
+    then
+        darwin-rebuild switch --flake "$FLAKE"
 
-#     elif [[ "$DARWIN_COMMAND" == build ]]
-#     then
-#         darwin-rebuild build --flake "$FLAKE"
+    elif [[ "$DARWIN_COMMAND" == build ]]
+    then
+        darwin-rebuild build --flake "$FLAKE"
 
-#     elif [[ "$DARWIN_COMMAND" == upgrade ]]
-#     then
-#         # TODO write a better logic for updating the flakes
-#         if [[ "$3" == dry ]]
-#         then
-#             darwin-rebuild build --flake "$FLAKE" --update-input nixpkgs
-#             darwin-rebuild build --flake "$FLAKE" --update-input home-manager
-#             darwin-rebuild build --flake "$FLAKE" --update-input darwin
-#             darwin-rebuild build --flake "$FLAKE" --update-input nixpkgs-master
-#             darwin-rebuild build --flake "$FLAKE" --update-input nixos-stable
-#             darwin-rebuild build --flake "$FLAKE" --update-input nixpkgs-unstable
-#             darwin-rebuild build --flake "$FLAKE" --update-input nixpkgs-stable-darwin
-#         else
-#             darwin-rebuild switch --flake "$FLAKE" --update-input nixpkgs
-#             darwin-rebuild switch --flake "$FLAKE" --update-input home-manager
-#             darwin-rebuild switch --flake "$FLAKE" --update-input darwin
-#             darwin-rebuild switch --flake "$FLAKE" --update-input nixpkgs-master
-#             darwin-rebuild switch --flake "$FLAKE" --update-input nixos-stable
-#             darwin-rebuild switch --flake "$FLAKE" --update-input nixpkgs-unstable
-#             darwin-rebuild switch --flake "$FLAKE" --update-input nixpkgs-stable-darwin
-#         fi
-#     else
-#         echo "Error: Undefined action"
-#     fi
-# else
-#     echo "ERROR: Undefined Action."
-# fi
+    elif [[ "$DARWIN_COMMAND" == upgrade ]]
+    then
+        # TODO write a better logic for updating the flakes
+        if [[ "$3" == dry ]]
+        then
+            darwin-rebuild build --flake "$FLAKE" --update-input nixpkgs
+            darwin-rebuild build --flake "$FLAKE" --update-input home-manager
+            darwin-rebuild build --flake "$FLAKE" --update-input darwin
+            darwin-rebuild build --flake "$FLAKE" --update-input nixpkgs-master
+            darwin-rebuild build --flake "$FLAKE" --update-input nixos-stable
+            darwin-rebuild build --flake "$FLAKE" --update-input nixpkgs-unstable
+            darwin-rebuild build --flake "$FLAKE" --update-input nixpkgs-stable-darwin
+        else
+            darwin-rebuild switch --flake "$FLAKE" --update-input nixpkgs
+            darwin-rebuild switch --flake "$FLAKE" --update-input home-manager
+            darwin-rebuild switch --flake "$FLAKE" --update-input darwin
+            darwin-rebuild switch --flake "$FLAKE" --update-input nixpkgs-master
+            darwin-rebuild switch --flake "$FLAKE" --update-input nixos-stable
+            darwin-rebuild switch --flake "$FLAKE" --update-input nixpkgs-unstable
+            darwin-rebuild switch --flake "$FLAKE" --update-input nixpkgs-stable-darwin
+        fi
+    else
+        echo "Error: Undefined action"
+    fi
+else
+    echo "ERROR: Undefined Action."
+fi

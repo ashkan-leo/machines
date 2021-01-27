@@ -7,8 +7,8 @@ let
 in {
 
   imports = [
-    # ../mac/yabai.nix
-    # ../mac/skhd.nix
+    ../../mac/yabai.nix
+    ../../mac/skhd.nix
 
     # ../mac/emacs-daemon.nix
     # ../modules/db/mongodb.nix
@@ -149,6 +149,7 @@ in {
 
     systemPackages = with pkgs; [
       emacsMacport
+      cachix
 
       # pkg-config
       # libffi
