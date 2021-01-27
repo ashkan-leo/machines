@@ -36,4 +36,4 @@ Note this will not remove the nix configuration files.
 * Hosts
 | Host      | OS     | Notes                   |
 |-----------+--------+-------------------------|
-| zebra.lan | Mac OS | My personal MacBook Pro |
+| zebra.lan | Darwin | My personal MacBook Pro |
