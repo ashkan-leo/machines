@@ -20,6 +20,7 @@ from ~homebrew~. Nix is a purely functional language and package manager.
    #+BEGIN_SRC bash
    bin/yo-mac-installer install $HOST
    #+END_SRC
+4. You may need to reboot the system -- specially if ~skhd~ is not working.
 ** Uninstallation
 #+BEGIN_SRC bash
 bin/yo-mac-installer uninstall
