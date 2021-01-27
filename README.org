@@ -6,6 +6,7 @@
   - [[#mac-os][Mac OS]]
     - [[#installation][Installation]]
     - [[#uninstallation][Uninstallation]]
+- [[#hosts][Hosts]]
 
 * Introduction
 This repository is an on-going effort to move my dotfiles to ~nix~ package manager
@@ -31,3 +32,8 @@ To uninstall nix simply run:
 bin/yo-mac-installer uninstall
 #+END_SRC
 Note this will not remove the nix configuration files.
+
+* Hosts
+| Host      | OS     | Notes                   |
+|-----------+--------+-------------------------|
+| zebra.lan | Mac OS | My personal MacBook Pro |
