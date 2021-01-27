@@ -23,6 +23,11 @@ with lib; {
 
     shellAbbrs = import ./abbreviations.nix;
 
+    # FIXME terrible hack
+    shellInit = ''
+      bass source /nix/store/lx21x6h12sqs00a2rfnkcjmd84shbjiy-set-environment
+    '';
+
     # define the custom keybindings
     # interactiveShellInit = ''
     #   function fish_user_key_bindings
