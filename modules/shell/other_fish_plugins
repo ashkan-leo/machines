@@ -1,0 +1,91 @@
+
+      # https://github.com/oh-my-fish/plugin-vi-mode
+      # {
+      #   name = "vi-mode";
+      #   src = fetchFromGitHub {
+      #     owner = "oh-my-fish";
+      #     repo = "plugin-vi-mode";
+      #     rev= "HEAD";
+      #     sha256 = "130cqgv6f973j4ipbdk60adgf6h9kly2x3l1521idd5nmc7dy6qb";
+      #   };
+      # }
+
+      # https://github.com/oh-my-fish/plugin-gi
+      # FIXME
+      # {
+      #   name = "plugin-gi";
+      #   src = fetchFromGitHub {
+      #     owner = "oh-my-fish";
+      #     repo = "plugin-gi";
+      #     rev= "b80c560dddfe489c3e2dc070cbb84ae3dd15cd61";
+      #     sha256 = "0pj4vypg3c7vs397bq9qk24p25i4nrwz88aw0m6an6nk8va3nh9r";
+      #   };
+      # }
+
+           # https://github.com/jethrokuan/z
+      # TODO  Using fasd instead of z
+      # {
+      #   name = "z";
+      #   src = fetchFromGitHub {
+      #     owner = "jethrokuan";
+      #     repo = "z";
+      #     rev = "HEAD";
+      #     sha256 = "0kykhan9rdzy8anif5jp1iv3djrakhwk2arll3k93vaxm3np0gfm";
+      #   };
+      # }
+
+      # https://github.com/oh-my-fish/plugin-fasd
+      # {
+      #   name = "fasd";
+      #   src = fetchFromGitHub {
+      #     owner = "oh-my-fish";
+      #     repo = "plugin-fasd";
+      #     rev = "HEAD";
+      #     sha256 = "06v37hqy5yrv5a6ssd1p3cjd9y3hnp19d3ab7dag56fs1qmgyhbs";
+      #   };
+      # }
+           # https://github.com/jethrokuan/z
+      # TODO  Using fasd instead of z
+      # {
+      #   name = "z";
+      #   src = fetchFromGitHub {
+      #     owner = "jethrokuan";
+      #     repo = "z";
+      #     rev = "HEAD";
+      #     sha256 = "0kykhan9rdzy8anif5jp1iv3djrakhwk2arll3k93vaxm3np0gfm";
+      #   };
+      # }
+
+      # https://github.com/oh-my-fish/plugin-fasd
+      # {
+      #   name = "fasd";
+      #   src = fetchFromGitHub {
+      #     owner = "oh-my-fish";
+      #     repo = "plugin-fasd";
+      #     rev = "HEAD";
+      #     sha256 = "06v37hqy5yrv5a6ssd1p3cjd9y3hnp19d3ab7dag56fs1qmgyhbs";
+      #   };
+      # }
+
+           # https://github.com/jethrokuan/z
+      # TODO  Using fasd instead of z
+      # {
+      #   name = "z";
+      #   src = fetchFromGitHub {
+      #     owner = "jethrokuan";
+      #     repo = "z";
+      #     rev = "HEAD";
+      #     sha256 = "0kykhan9rdzy8anif5jp1iv3djrakhwk2arll3k93vaxm3np0gfm";
+      #   };
+      # }
+
+      # https://github.com/oh-my-fish/plugin-fasd
+      # {
+      #   name = "fasd";
+      #   src = fetchFromGitHub {
+      #     owner = "oh-my-fish";
+      #     repo = "plugin-fasd";
+      #     rev = "HEAD";
+      #     sha256 = "06v37hqy5yrv5a6ssd1p3cjd9y3hnp19d3ab7dag56fs1qmgyhbs";
+      #   };
+      # }

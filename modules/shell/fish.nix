@@ -33,6 +33,7 @@ with lib; {
     plugins = with pkgs; [
 
       # https://github.com/oh-my-fish/plugin-config
+      # omf under the hood stuff
       {
         name = "omf-config";
         src = fetchFromGitHub {
@@ -62,7 +63,7 @@ with lib; {
           owner = "oh-my-fish";
           repo = "theme-bobthefish";
           rev = "HEAD";
-          sha256 = "1fssb5bqd2d7856gsylf93d28n3rw4rlqkhbg120j5ng27c7v7lq";
+          sha256 = "gp8qYWg4o9l5H+0WiLf7GL+DGM20OvzKAsowouC6ax0=";
         };
       }
 
@@ -77,29 +78,6 @@ with lib; {
         };
       }
 
-      # https://github.com/oh-my-fish/plugin-vi-mode
-      # {
-      #   name = "vi-mode";
-      #   src = fetchFromGitHub {
-      #     owner = "oh-my-fish";
-      #     repo = "plugin-vi-mode";
-      #     rev= "HEAD";
-      #     sha256 = "130cqgv6f973j4ipbdk60adgf6h9kly2x3l1521idd5nmc7dy6qb";
-      #   };
-      # }
-
-      # https://github.com/oh-my-fish/plugin-gi
-      # FIXME
-      # {
-      #   name = "plugin-gi";
-      #   src = fetchFromGitHub {
-      #     owner = "oh-my-fish";
-      #     repo = "plugin-gi";
-      #     rev= "b80c560dddfe489c3e2dc070cbb84ae3dd15cd61";
-      #     sha256 = "0pj4vypg3c7vs397bq9qk24p25i4nrwz88aw0m6an6nk8va3nh9r";
-      #   };
-      # }
-
       # https://github.com/oh-my-fish/plugin-sudope
       # FIXME ESCAPE not working
       {
@@ -112,29 +90,6 @@ with lib; {
         };
       }
 
-      # https://github.com/jethrokuan/z
-      # TODO  Using fasd instead of z
-      # {
-      #   name = "z";
-      #   src = fetchFromGitHub {
-      #     owner = "jethrokuan";
-      #     repo = "z";
-      #     rev = "HEAD";
-      #     sha256 = "0kykhan9rdzy8anif5jp1iv3djrakhwk2arll3k93vaxm3np0gfm";
-      #   };
-      # }
-
-      # https://github.com/oh-my-fish/plugin-fasd
-      {
-        name = "fasd";
-        src = fetchFromGitHub {
-          owner = "oh-my-fish";
-          repo = "plugin-fasd";
-          rev = "HEAD";
-          sha256 = "06v37hqy5yrv5a6ssd1p3cjd9y3hnp19d3ab7dag56fs1qmgyhbs";
-        };
-      }
-
       # https://github.com/jethrokuan/fzf
       # TODO checkout the docs
       # FIXME alt doesn't work -- e.g. Alt-C not working
@@ -144,7 +99,7 @@ with lib; {
           owner = "jethrokuan";
           repo = "fzf";
           rev = "HEAD";
-          sha256 = "1df1jkrq778yfi5mh2wk4hzszqxvlkc59smiicy9qa84cw0092ds";
+          sha256 = "D20sR9H5lEh53nerhiuc5Ooid0AaD3Dcs85PgaNHFnk=";
         };
       }
 
@@ -188,21 +143,10 @@ with lib; {
           owner = "edc";
           repo = "bass";
           rev = "HEAD";
-          sha256 =
-            "sha256:0ppmajynpb9l58xbrcnbp41b66g7p0c9l2nlsvyjwk6d16g4p4gy";
+          sha256 = "VBqfBhHj0OyUmDzjak7OpSNxXlB0Xp1oG31To35u/rU=";
         };
       }
 
-      # https://github.com/evanlucas/fish-kubectl-completions
-      {
-        name = "kubectl-completions";
-        src = fetchFromGitHub {
-          owner = "evanlucas";
-          repo = "fish-kubectl-completions";
-          rev = "HEAD";
-          sha256 = "1jk6kly62h8qpwqz71fpa7wyb3xwkfsp6b3q8p3ciqv62c0drfkk";
-        };
-      }
 
       # https://github.com/otms61/fish-pet
       {
@@ -223,7 +167,7 @@ with lib; {
           owner = "joehillen";
           repo = "to-fish";
           rev = "HEAD";
-          sha256 = "12kcf6rzwp0fcjhf9hak22b5j1a616s4m4zmh4kyxf39gy03ci1w";
+          sha256 = "YGNsg4HhL/jz7eFLpZn9tzfRNriofwzbuhrY+rq9sIE=";
         };
       }
 
@@ -248,42 +192,6 @@ with lib; {
           sha256 = "16nxd5w70rzrpxvlkn7xg592p6s1xh6v10anapfdm5p20azrkfnq";
         };
       }
-
-      # https://github.com/oh-my-fish/plugin-aws
-      # {
-      #   name = "aws";
-      #   src = fetchFromGitHub {
-      #     owner = "oh-my-fish";
-      #     repo = "plugin-aws";
-      #     rev = "HEAD";
-      #     sha256 = "03yqrb1l7wmp5hzig9klf9gsdg8ncrky0bkvynzy8jxy9yvhpg7j";
-      #   };
-      # }
-
-      # https://github.com/oh-my-fish/plugin-weather
-      {
-        name = "weather";
-        src = fetchFromGitHub {
-          owner = "oh-my-fish";
-          repo = "plugin-weather";
-          rev = "HEAD";
-          sha256 = "19xg0779fax47skifmshb915684l4k1v2mv8cg8f2j38fdq28cb3";
-        };
-      }
-
-      # https://github.com/acomagu/fish-async-prompt
-      # NOTE this extension ignores prompt theme variables
-      # NOTE and is unpredictable specially when using tmux
-      # {
-      #   name = "async-prompt";
-      #   src = fetchFromGitHub {
-      #     owner = "acomagu";
-      #     repo = "fish-async-prompt";
-      #     rev = "HEAD";
-      #     sha256 = "18nxl53nc0hwpilgp2izz89mjmklh1r2iaacz9lw5kg4xw2h75hc";
-      #   };
-      # }
-
     ];
   };
 }

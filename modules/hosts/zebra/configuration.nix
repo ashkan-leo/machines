@@ -198,12 +198,12 @@ in {
   programs.zsh.enable = true;
 
   # FIXME the nixpkgs configuration is duplicated in home.nix as well
-  nixpkgs = {
-    config = {
-      allowUnfree = true;
-      allowBroken = false;
-      allowUnsupportedSystem = true;
-    };
+  # nixpkgs = {
+  #   config = {
+  #     allowUnfree = true;
+  #     allowBroken = false;
+  #     allowUnsupportedSystem = true;
+  #   };
 
     # TODO overlays? Do I need them?
     # overlays =
@@ -213,14 +213,14 @@ in {
     #                   pathExists (path + ("/" + n + "/default.nix")))
     #               (attrNames (readDir path)))
     #     ++ [ (import ./envs.nix) ];
-  };
+  # };
 
   # You should generally set this to the total number of logical cores in your system.
   # $ sysctl -n hw.ncpu
   nix = {
     maxJobs = 8;
     buildCores = 0;
-    nixPath = [ "darwin-config=$HOME/.config/nixpkgs/darwin-configuration.nix" "/nix/var/nix/profiles/per-user/root/channels" "$HOME/.nix-defexpr/channels" ];
+    # nixPath = [ "darwin-config=$HOME/.config/nixpkgs/darwin-configuration.nix" "/nix/var/nix/profiles/per-user/root/channels" "$HOME/.nix-defexpr/channels" ];
   };
 
   # Used for backwards compatibility, please read the changelog before changing.

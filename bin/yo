@@ -1,109 +1,50 @@
 #!/usr/bin/env bash
 
+unset DIR
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+FLAKE="$DIR/.."
 
 # Ensure `diskutil` is in $PATH
 export PATH="/usr/sbin/:$PATH"
 
+# TODO add proper command line argument handeling
 SUB_COMMAND=$1
-if [[ "$SUB_COMMAND" == "uninstall" ]]; then
-    echo "Uninstalling nix-darwin and nix package manager"
-    echo "This will not remove any configuration file from the system"
-    cd /tmp
 
-    # uninstall nix-darwin if it exists
-    if command -v nix-build &> /dev/null
-    then
-        echo "Uninstalling Nix Darwin"
-        nix-build https://github.com/LnL7/nix-darwin/archive/master.tar.gz -A uninstaller
-        ./result/bin/darwin-uninstaller    
-    fi
+# elif [[ "$SUB_COMMAND" == darwin ]]
+# then
+#     DARWIN_COMMAND=$2
+#     if [[ "$DARWIN_COMMAND" == switch ]]
+#     then
+#         darwin-rebuild switch --flake "$FLAKE"
 
-    # remove all the nix related directories
-    sudo rm -rf /etc/nix /nix/* ~root/.nix-profile \
-        ~root/.nix-defexpr \
-        ~root/.nix-channels \
-        ~/.nix-profile \
-        ~/.nix-defexpr \
-        ~/.nix-channels 2> /dev/null
+#     elif [[ "$DARWIN_COMMAND" == build ]]
+#     then
+#         darwin-rebuild build --flake "$FLAKE"
 
-    # If you are on macOS, you will need to run:
-    sudo launchctl unload /Library/LaunchDaemons/org.nixos.nix-daemon.plist 2> /dev/null
-    sudo rm /Library/LaunchDaemons/org.nixos.nix-daemon.plist 2> /dev/null
-
-    # revert /etc/bashrc to its form before installing NIX
-    if [[ -f "/etc/bashrc.backup-before-nix" ]]; then
-        echo "Reverting /etc/bashrc to its original form"
-        sudo mv /etc/bashrc.backup-before-nix /etc/bashrc
-    fi
-
-    # revert /etc/zshrc to its form before installing NIX
-    if [[ -f "/etc/zshrc.backup-before-nix" ]]
-    then
-        echo "Reverting /etc/zshrc to its original form"
-        sudo mv /etc/zshrc.backup-before-nix /etc/zshrc
-    fi
-
-    echo "Done!"
-
-    # If you are on Linux with systemd, you will need to run:
-    # TODO enable linux functionalities
-    # TODO enable nixOS functionalities
-    # sudo systemctl stop nix-daemon.socket
-    # sudo systemctl stop nix-daemon.service
-    # sudo systemctl disable nix-daemon.socket
-    # sudo systemctl disable nix-daemon.service
-    # sudo systemctl daemon-reload
-
-elif [[ "$SUB_COMMAND" == "install" ]]; then
-
-    # Do all the dirty work in the tmp directory
-    cd /tmp/
-
-    HOST_NAME=$2
-
-    # Install nix package manager
-    curl -L https://nixos.org/nix/install > /tmp/nix_install.sh
-    # T-2 Chip on the macbook encrypts by itself?
-    sh /tmp/nix_install.sh --daemon --darwin-use-unencrypted-nix-store-volume
-
-    # NOTE Fix potential error 
-    # NOTE "Problem with the SSL CA cert (path? access rights?) (77)"
-    sudo rm /etc/ssl/certs/ca-certificates.crt 2> /dev/null
-    sudo ln -s /nix/var/nix/profiles/default/etc/ssl/certs/ca-bundle.crt /etc/ssl/certs/ca-certificates.crt
-
-    # Show information about current system
-    nix-shell -p nix-info --run "nix-info -m"
-
-    # Install and enable nix flakes
-    # NOTE thi will be part of nix in the future
-    nix-env -iA nixpkgs.nixFlakes
-    echo "experimental-features = nix-command flakes" | sudo tee -a /etc/nix/nix.conf
-    nix-shell -p nix-info --run "nix-info -m"
-
-    # TODO do we need this?
-    # sudo ln -s private/var/run /run
-
-    # Bootstrap the system given the host name
-    # TODO generalize to non-darwin systems
-    # TODO figure out how to resolve issues for dirty worktree
-    nix build "/../\#darwinConfigurations.${HOST_NAME}.system" --experimental-features "nix-command flakes"
-
-    # Remove the certificate nix-darwin contain if it exist
-    sudo rm  /etc/ssl/certs/ca-certificates.crt 2> /dev/null
-
-    # Backup the files nix-darwin will overwrite if they exist
-    # sudo mv /etc/zshrc /etc/zshrc.backup-before-nix-darwin 2> /dev/null
-    # sudo mv /etc/bashrc /etc/bashrc.backup-before-nix-darwin 2> /dev/null
-    # sudo mv /etc/nix/nix.conf /etc/nix/nix.conf.backup-before-nix-darwin 2> /dev/null
-
-    # Activate the nix-darwin configuration    
-    ./result/sw/bin/darwin-rebuild switch --flake ../
-
-    # TODO the following script did not work for mac OS 11.1 at the time of writing.
-    # curl -L https://github.com/numtide/nix-flakes-installer/releases/download/nix-2.4pre20201221_9fab14a/install > nix_flake_install.sh
-    # sh nix_flake_install.sh
-else
-    echo "ERROR: Undefined Action."
-fi
-
+#     elif [[ "$DARWIN_COMMAND" == upgrade ]]
+#     then
+#         # TODO write a better logic for updating the flakes
+#         if [[ "$3" == dry ]]
+#         then
+#             darwin-rebuild build --flake "$FLAKE" --update-input nixpkgs
+#             darwin-rebuild build --flake "$FLAKE" --update-input home-manager
+#             darwin-rebuild build --flake "$FLAKE" --update-input darwin
+#             darwin-rebuild build --flake "$FLAKE" --update-input nixpkgs-master
+#             darwin-rebuild build --flake "$FLAKE" --update-input nixos-stable
+#             darwin-rebuild build --flake "$FLAKE" --update-input nixpkgs-unstable
+#             darwin-rebuild build --flake "$FLAKE" --update-input nixpkgs-stable-darwin
+#         else
+#             darwin-rebuild switch --flake "$FLAKE" --update-input nixpkgs
+#             darwin-rebuild switch --flake "$FLAKE" --update-input home-manager
+#             darwin-rebuild switch --flake "$FLAKE" --update-input darwin
+#             darwin-rebuild switch --flake "$FLAKE" --update-input nixpkgs-master
+#             darwin-rebuild switch --flake "$FLAKE" --update-input nixos-stable
+#             darwin-rebuild switch --flake "$FLAKE" --update-input nixpkgs-unstable
+#             darwin-rebuild switch --flake "$FLAKE" --update-input nixpkgs-stable-darwin
+#         fi
+#     else
+#         echo "Error: Undefined action"
+#     fi
+# else
+#     echo "ERROR: Undefined Action."
+# fi

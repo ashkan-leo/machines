@@ -1,0 +1,130 @@
+#!/usr/bin/env bash
+
+unset DIR
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+FLAKE="$DIR/.."
+
+# Ensure `diskutil` is in $PATH
+export PATH="/usr/sbin/:$PATH"
+
+# TODO add proper command line argument handeling
+SUB_COMMAND=$1
+
+if [[ "$SUB_COMMAND" == uninstall ]]; then
+    echo "Uninstalling nix-darwin and nix package manager"
+    echo "This will not remove any configuration file from the system"
+    cd /tmp
+
+    # uninstall nix-darwin if it exists
+    if command -v nix-build &> /dev/null
+    then
+        echo "Uninstalling Nix Darwin"
+        nix-build https://github.com/LnL7/nix-darwin/archive/master.tar.gz -A uninstaller
+        ./result/bin/darwin-uninstaller    
+    fi
+
+    # On macOS need to run:
+    sudo launchctl unload /Library/LaunchDaemons/org.nixos.nix-daemon.plist 2> /dev/null
+    sudo rm /Library/LaunchDaemons/org.nixos.nix-daemon.plist 2> /dev/null
+
+    # remove all the nix related directories and ignore all the shouts
+    sudo rm -rf /etc/nix /nix/* ~root/.nix-profile \
+        ~root/.nix-defexpr \
+        ~root/.nix-channels \
+        ~/.nix-profile \
+        ~/.nix-defexpr \
+        ~/.nix-channels 2> /dev/null
+
+    # TODO make the following a bit safer
+    sudo rm /etc/bashrc
+    sudo rm /etc/zshrc
+
+    # TODO revert /etc/bashrc to its form before installing NIX
+    # if [[ -f "/etc/bashrc.backup-before-nix" ]]; then
+    #     echo "Reverting /etc/bashrc to its original form"
+    #     sudo mv /etc/bashrc.backup-before-nix /etc/bashrc
+    # fi
+
+    # TODO revert /etc/zshrc to its form before installing NIX
+    # if [[ -f "/etc/zshrc.backup-before-nix" ]]
+    # then
+    #     echo "Reverting /etc/zshrc to its original form"
+    #     sudo mv /etc/zshrc.backup-before-nix /etc/zshrc
+    # fi
+
+    echo "Done!"
+
+    # If you are on Linux with systemd, you will need to run:
+    # TODO enable linux functionalities
+    # TODO enable nixOS functionalities
+    # sudo systemctl stop nix-daemon.socket
+    # sudo systemctl stop nix-daemon.service
+    # sudo systemctl disable nix-daemon.socket
+    # sudo systemctl disable nix-daemon.service
+    # sudo systemctl daemon-reload
+
+elif [[ "$SUB_COMMAND" == install ]]; then
+
+    # Do all the dirty work in the tmp directory
+    HOST_NAME=$2
+
+    # Install nix package manager
+    echo Downloading official Nix Installer
+    curl -L https://nixos.org/nix/install --output /tmp/nix_install.sh
+    # T-2 Chip on the macbook encrypts by itself?
+    sh /tmp/nix_install.sh --daemon # --darwin-use-unencrypted-nix-store-volume
+    echo Nix installation completed
+
+    # TODO this is needed for a bug upstream
+    if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]
+    then
+        echo Infecting the shell
+        . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+    fi
+
+    # NOTE Fix potential error
+    # NOTE "Problem with the SSL CA cert (path? access rights?) (77)"
+    # sudo rm /etc/ssl/certs/ca-certificates.crt 2> /dev/null
+    # sudo ln -s /nix/var/nix/profiles/default/etc/ssl/certs/ca-bundle.crt /etc/ssl/certs/ca-certificates.crt
+    # echo Linked the SSL CA cert
+
+
+    # Install and enable nix flakes
+    # NOTE thi will be part of nix in the future
+    nix-env -iA nixpkgs.nixFlakes
+    # TODO fix the bug where the step below keeps appending to a file
+    echo "experimental-features = nix-command flakes" | sudo tee -a /etc/nix/nix.conf
+
+    # Show information about current system
+    nix-shell -p nix-info --run "nix-info -m"
+
+    # TODO do we need this?
+    # TODO may be needed if the system doesn't have /run
+    # sudo ln -s private/var/run /run
+
+    # Bootstrap the system given the host name
+    # Write `result` to the flake root directory
+    # TODO generalize to non-darwin systems
+    # TODO figure out how to resolve issues for dirty worktree
+    # TODO figure out if --max-jobs auto option has the desired functionality
+    cd $FLAKE
+    nix build --max-jobs auto ./\#darwinConfigurations.$HOST_NAME.system
+
+    # NOTE this seems to help with a ghost bug
+    # Remove the certificate nix-darwin contain if it exist
+    # sudo rm /etc/ssl/certs/ca-certificates.crt 2> /dev/null
+
+    # NOTE instead of backing up stuff, which is a sad way of achieving reversibility delete them all!
+    sudo rm /etc/zshrc/
+    sudo rm /etc/bashrc
+    sudo rm /nix/nix.conf
+
+    # Activate the nix-darwin configuration    
+    "$FLAKE"/result/sw/bin/darwin-rebuild switch --flake "$FLAKE"
+
+    # # NOTE the following script did not work for mac OS 11.1 at the time of writing.
+    # # curl -L https://github.com/numtide/nix-flakes-installer/releases/download/nix-2.4pre20201221_9fab14a/install > nix_flake_install.sh
+    # # sh nix_flake_install.sh
+else
+    echo "ERROR: Undefined Action."
+fi
