@@ -26,15 +26,19 @@ with lib; {
       d = "diff";
       se = "!git rev-list --all | xargs git grep -F";
       p = "!git pull --ff-only";
-      fixup = "!sh -c 'REV=$(git rev-parse $1) && git commit --fixup $@ && git rebase -i --autostash --autosquash $REV^' -";
-      cleanup = "!git branch --merged | grep -v -P '^\\*|master|main|develop' | xargs -n1 -r git branch -d";
+      fixup =
+        "!sh -c 'REV=$(git rev-parse $1) && git commit --fixup $@ && git rebase -i --autostash --autosquash $REV^' -";
+      cleanup =
+        "!git branch --merged | grep -v -P '^\\*|master|main|develop' | xargs -n1 -r git branch -d";
       del = "branch -D";
-      br = "branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate";
+      br =
+        "branch --format='%(HEAD) %(color:yellow)%(refname:short)%(color:reset) - %(contents:subject) %(color:green)(%(committerdate:relative)) [%(authorname)]' --sort=-committerdate";
       undo = "reset HEAD~1 --mixed";
       save = "save = !git add -A && git commit -m 'chore: commit save point";
       res = "!git reset --hard";
       done = "!git push origin HEAD";
-      lg = "!git log --pretty=format:\"%C(magenta)%h%Creset -%C(red)%d%Creset %s %C(dim green)(%cr) [%an]\" --abbrev-commit -30";
+      lg = ''
+        !git log --pretty=format:"%C(magenta)%h%Creset -%C(red)%d%Creset %s %C(dim green)(%cr) [%an]" --abbrev-commit -30'';
     };
 
     attributes = [ "*.pdf diff=pdf" ];
