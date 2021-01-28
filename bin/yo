@@ -21,6 +21,10 @@ then
     then
         darwin-rebuild build --flake "$FLAKE"
 
+    elif [[ "$DARWIN_COMMAND" == activate ]]
+    then
+        sudo "$FLAKE"/result/activate
+
     elif [[ "$DARWIN_COMMAND" == upgrade ]]
     then
         # TODO write a better logic for updating the flakes
