@@ -4,9 +4,6 @@ unset DIR
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 FLAKE="$DIR/.."
 
-# Ensure `diskutil` is in $PATH
-export PATH="/usr/sbin/:$PATH"
-
 # TODO add proper command line argument handeling
 SUB_COMMAND=$1
 
