@@ -9,6 +9,9 @@ SUB_COMMAND=$1
 
 if [[ "$SUB_COMMAND" == darwin ]]
 then
+    # link result in the flake
+    cd "$FLAKE"
+
     DARWIN_COMMAND=$2
     if [[ "$DARWIN_COMMAND" == switch ]]
     then
