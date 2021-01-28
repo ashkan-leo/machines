@@ -3,8 +3,6 @@
 with lib; {
   programs.git = {
     enable = true;
-    userName = "ashkan-leo";
-    userEmail = "ashkan.aleali@gmail.com";
 
     lfs.enable = true;
     delta = {
