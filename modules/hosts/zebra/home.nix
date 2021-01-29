@@ -10,6 +10,7 @@ let
     ../../shell/broot.nix
     ../../shell/direnv.nix
     ../../shell/misc.nix
+    ../../shell/ssh.nix
 
     ../../tools/git.nix
 
