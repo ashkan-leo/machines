@@ -2,6 +2,7 @@
 
 with lib; {
   programs.ssh = {
+    forwardAgent = true;
     enable = true;
     matchBlocks = {
       "linode.nano" = {
