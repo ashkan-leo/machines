@@ -40,9 +40,9 @@
       # window_shadow = "float";
 
       # FIXME turning on opacity will cause the OS to crash
-      # window_opacity = "on";
-      # active_window_opacity = 0.98;
-      # normal_window_opacity = 0.9;
+      window_opacity = "on";
+      active_window_opacity = 0.9;
+      normal_window_opacity = 0.8;
     };
   };
 }
