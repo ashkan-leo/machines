@@ -1,6 +1,11 @@
 { pkgs }:
 
 with pkgs; [
+  ###
+  ### Cloud
+  ###
+  #
+  linode-cli
 
   ###
   ### Utilities
