@@ -7,6 +7,7 @@
     nixpkgs-stable-darwin.url = "github:nixos/nixpkgs/nixpkgs-20.09-darwin";
     nixos-stable.url = "github:nixos/nixpkgs/nixos-20.09";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixos-hardware.url = "github:nixos/nixos-hardware";
     darwin = {
       url = "github:lnl7/nix-darwin/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -18,8 +19,10 @@
     # flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = inputs@{ self, darwin, nixpkgs, home-manager, ... }:
+  outputs = inputs@{ self, darwin, nixpkgs, home-manager, nixpkgs-master
+    , nixpkgs-stable-darwin, nixos-stable, nixpkgs-unstable, nixos-hardware }:
     let
+      # This is passed to the home-manager.
       nixpkgsConfig = with inputs; {
         config = {
           allowUnfree = true;
@@ -28,7 +31,21 @@
           permittedInsecurePackages = [ "spidermonkey-38.8.0" ];
         };
       };
-      commonConfiguration = { pkgs, ... }: {
+      nixosCommonConfiguration = { pkgs, ... }: {
+        nix = {
+          package = pkgs.nixFlakes;
+          extraOptions = "experimental-features = nix-command flakes";
+          binaryCaches = [
+            "https://cache.nixos.org/"
+            # "https://hardselius.cachix.org"
+          ];
+          binaryCachePublicKeys = [
+            "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+            # "hardselius.cachix.org-1:wdmClEq/2j8gEKJ5vLLCmpgCDumsyPMO6iVWKkYHKP0="
+          ];
+        };
+      };
+      darwinCommonConfiguration = { pkgs, ... }: {
         nix = {
           package = pkgs.nixFlakes;
           extraOptions = "experimental-features = nix-command flakes";
@@ -46,7 +63,7 @@
       darwinModules = { user, host }:
         with inputs; [
           (./. + "/modules/hosts/${host}/configuration.nix")
-          commonConfiguration
+          darwinCommonConfiguration
           home-manager.darwinModules.home-manager
           {
             nixpkgs = nixpkgsConfig;
@@ -57,9 +74,26 @@
             home-manager = {
               useGlobalPkgs = true;
               users.${user} = with self.homeManagerModules; {
-                imports = [
-                  (./. + "/modules/hosts/${host}/home.nix")
-                ];
+                imports = [ (./. + "/modules/hosts/${host}/home.nix") ];
+              };
+            };
+          }
+        ];
+      linuxModules = { user, host }:
+        with inputs; [
+          (./. + "/modules/hosts/${host}/configuration.nix")
+          # FIXME this hostname business is repeated all over the place
+          # ({ pkgs, ... }: { networking.hostname = "nano"; })
+          nixosCommonConfiguration
+          home-manager.nixosModules.home-manager
+          {
+            nixpkgs = nixpkgsConfig;
+            users.users.${user}.home = "/home/${user}";
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.${user} = with self.homeManagerModules; {
+                imports = [ (./. + "/modules/hosts/${host}/home.nix") ];
               };
             };
           }
@@ -74,6 +108,16 @@
             host = "zebra";
           };
           # inputs = { inherit darwin nixpkgs home-manager; };
+        };
+      };
+      nixosConfigurations = {
+        ## The linode nano instance
+        nano = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = linuxModules {
+            user = "ashkanaleali";
+            host = "nano";
+          };
         };
       };
     };

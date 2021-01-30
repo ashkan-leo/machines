@@ -28,7 +28,7 @@ in {
     # ./modules/editor/emacs.nix
   ];
 
-  home.packages = import ../../packages/x86_64-darwin.nix { inherit pkgs; }
+  home.packages = import ../../packages/x86_64-linux.nix { inherit pkgs; }
     ++ import ../../packages/x86_64-universal.nix { inherit pkgs; };
 
   # Configure git username and email for this profile
