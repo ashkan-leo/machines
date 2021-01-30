@@ -4,8 +4,9 @@
   services.skhd = {
     enable = true;
     skhdConfig = ''
-      # Emacs
-      cmd + shift - e : /run/current-system/Applications/Emacs.app/Contents/MacOS/Emacs
+      # FIXME Emacs
+      # FIXME not loading the configuration
+      cmd + shift - e : /run/current-system/sw/bin/bash -c "/run/current-system/Applications/Emacs.app/Contents/MacOS/Emacs"
 
       # yabai
 
