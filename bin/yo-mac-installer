@@ -68,7 +68,6 @@ elif [[ "$SUB_COMMAND" == install ]]; then
     # Install command line utilities
     softwareupdate --all --install --force
 
-    # Do all the dirty work in the tmp directory
     HOST_NAME=$2
 
     # Install nix package manager
@@ -84,6 +83,8 @@ elif [[ "$SUB_COMMAND" == install ]]; then
         echo Infecting the shell
         . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
     fi
+
+    # TODO install git if not present. we may need it.
 
     # NOTE Fix potential error
     # NOTE "Problem with the SSL CA cert (path? access rights?) (77)"
