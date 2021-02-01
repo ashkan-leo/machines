@@ -4,7 +4,7 @@
 #         Copyright 2012— Gregory Pakosz (@gpakosz).
 
 # -- default shell -------------------------------------------------------------
-set-option -g default-shell ~/.nix-profile/bin/fish
+# set-option -g default-shell ~/.nix-profile/bin/fish
 
 # -- navigation ----------------------------------------------------------------
 
