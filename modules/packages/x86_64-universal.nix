@@ -60,6 +60,7 @@ with pkgs; [
   ranger
 
   exiftool
+  git-sync
   gitAndTools.gh
   gitAndTools.grv
   gitAndTools.gita
