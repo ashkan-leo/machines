@@ -31,6 +31,8 @@ in {
   home.packages = import ../../packages/x86_64-linux.nix { inherit pkgs; }
     ++ import ../../packages/x86_64-universal.nix { inherit pkgs; };
 
+  programs.emacs.enable = true;
+
   # Configure git username and email for this profile
   programs.git = {
     userName = gitUserName;
