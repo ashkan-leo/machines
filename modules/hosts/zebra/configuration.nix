@@ -151,17 +151,18 @@ in {
       emacsMacport
       cachix
 
-      # pkg-config
-      # libffi
-      # imagemagick
-      # stdenv
-      # autoconf
-      # gnumake
-      # automake
-      # libpng
-      # pngpp
-      # zlib.dev
-      # poppler_gi
+      pkg-config
+      libffi
+      imagemagick
+      stdenv
+      autoconf
+      gnumake
+      automake
+      libpng
+      pngpp
+      zlib.dev
+      poppler_gi
+      libtool
     ];
 
     # FIXME this doesn't work

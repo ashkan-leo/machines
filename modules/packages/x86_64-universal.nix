@@ -58,7 +58,7 @@ with pkgs; [
   exa
   lsd
   ranger
-
+  sqlite
   exiftool
   git-sync
   gitAndTools.gh
