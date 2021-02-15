@@ -70,7 +70,7 @@ with pkgs; [
   git-lfs
   wget
   w3m
-  thefuck
+  # thefuck FIXME
   pet
   fasd
   jq
