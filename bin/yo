@@ -27,6 +27,9 @@ then
 
     elif [[ "$DARWIN_COMMAND" == upgrade ]]
     then
+        # TODO I think I should print an error if the working tree
+        # TODO is dirty
+        #
         # TODO write a better logic for updating the flakes
         if [[ "$3" == dry ]]
         then
@@ -38,6 +41,9 @@ then
             darwin-rebuild build --flake "$FLAKE" --update-input nixpkgs-unstable
             darwin-rebuild build --flake "$FLAKE" --update-input nixpkgs-stable-darwin
         else
+            # TODO is this the best way?
+            rm flake.lock
+
             darwin-rebuild switch --flake "$FLAKE" --update-input nixpkgs
             darwin-rebuild switch --flake "$FLAKE" --update-input home-manager
             darwin-rebuild switch --flake "$FLAKE" --update-input darwin
