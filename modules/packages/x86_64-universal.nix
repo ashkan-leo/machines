@@ -89,14 +89,6 @@ with pkgs; [
   cookiecutter
   fswatch
 
-  # Jupyter
-  python39Packages.jupyter
-  python39Packages.jupyterlab
-  python39Packages.jupyterlab-git
-  python39Packages.jupyterlab_launcher
-  python39Packages.jupyterlab-pygments
-  python39Packages.jupyterlab-pygments
-
 
   # Scala
   scala
