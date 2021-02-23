@@ -84,6 +84,7 @@ with pkgs; [
   ###
   #
 
+  nodePackages.prettier
   # Development utilities
   cookiecutter
   fswatch
