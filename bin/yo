@@ -27,9 +27,10 @@ then
 
     elif [[ "$DARWIN_COMMAND" == upgrade ]]
     then
-        # TODO I think I should print an error if the working tree
-        # TODO is dirty
-        #
+        # Remove the lock file to avoid "cannot write modified lock file of flake" error
+        # This should be fine since flake.lock is versin controlled
+        rm flake.lock
+
         # TODO write a better logic for updating the flakes
         if [[ "$3" == dry ]]
         then
