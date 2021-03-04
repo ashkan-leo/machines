@@ -98,7 +98,7 @@ with pkgs; [
   metals
 
   # Nix
-  nixops
+  # nixops FIXME
   nixfmt
   nix-doc
   manix
@@ -109,12 +109,12 @@ with pkgs; [
   swiProlog
 
   # Python
-  python39Full
-  pipenv
-  poetry
+  # python39Full
+  # pipenv
+  # poetry
 
   # Kubernetese
-  minikube
+  # minikube
 
   # C/C++
   gcc
