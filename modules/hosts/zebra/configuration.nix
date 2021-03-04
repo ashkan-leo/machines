@@ -195,7 +195,7 @@ in {
   # Enable Lorri, a nix-shell replacement that integrates with direnv
   services.lorri.enable = true;
 
-  # programs.fish.enable = true;
+  programs.fish.enable = true;
   programs.bash.enable = true;
   programs.zsh.enable = true;
 
