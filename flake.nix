@@ -70,6 +70,7 @@
             # nix.nixPath = {
             #   nixpkgs = "$HOME/.config/nixpkgs/nixpkgs.nix";
             # };
+            users.nix.configureBuildUsers = true;
             users.users.${user}.home = "/Users/${user}";
             home-manager = {
               useGlobalPkgs = true;
