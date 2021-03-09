@@ -124,11 +124,12 @@ with pkgs; [
   hugo
 
   # Haskell
-  ghc
-  cabal-install
-  stack
-  cabal2nix
-  haskellPackages.hoogle
+  # Comment out the dev tools and install them using nix-shell
+  # ghc
+  # cabal-install
+  # stack
+  # cabal2nix FIXME
+  # haskellPackages.hoogle
 
   ###
   ### Type Setting
