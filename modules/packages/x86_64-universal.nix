@@ -109,9 +109,9 @@ with pkgs; [
   swiProlog
 
   # Python
+  poetry
   # python39Full
   # pipenv
-  # poetry
 
   # Kubernetese
   # minikube
