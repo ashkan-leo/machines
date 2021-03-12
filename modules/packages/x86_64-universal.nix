@@ -15,6 +15,7 @@ with pkgs; [
   graphviz
   mosh
   tcl
+  lice
 
   # text search & manipulation programs
   gawk
