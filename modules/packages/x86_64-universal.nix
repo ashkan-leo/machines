@@ -111,6 +111,7 @@ with pkgs; [
 
   # Python
   poetry
+  nodePackages.pyright
   # python39Full
   # pipenv
 
