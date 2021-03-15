@@ -6,7 +6,7 @@
     skhdConfig = ''
       # FIXME Emacs
       # FIXME not loading the configuration
-      cmd + shift - e : /run/current-system/sw/bin/bash -c "/run/current-system/Applications/Emacs.app/Contents/MacOS/Emacs"
+      cmd + shift - e : nix-shell -p zsh --run "open /run/current-system/Applications/Emacs.app/Contents/MacOS/Emacs"
 
       # yabai
 
