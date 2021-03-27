@@ -6,6 +6,7 @@ with pkgs; [
   ###
   #
   linode-cli
+  awscli2
 
   ###
   ### Utilities
@@ -107,7 +108,7 @@ with pkgs; [
   nix-prefetch-github
 
   # Prolog
-  swiProlog
+  # swiProlog FIXME
 
   # Python
   poetry
