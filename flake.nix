@@ -27,7 +27,7 @@
         config = {
           allowUnfree = true;
           allowBroken = false;
-          allowUnsupportedSystem = false;
+          allowUnsupportedSystem = true;
           permittedInsecurePackages = [ "spidermonkey-38.8.0" ];
         };
       };

@@ -13,6 +13,7 @@
 
       mouse_modifier = "fn";
       mouse_follows_focus = "on";
+      focus_follows_mouse = "on";
       mouse_action1 = "move";
       mouse_action2 = "resize";
       # focus_follows_mouse = "autoraise";
@@ -34,6 +35,8 @@
         yabai -m rule --add app="FaceTime" manage=off
         yabai -m rule --add app="Wally" manage=off
         yabai -m rule --add app="Alfred Preferences" manage=off
+
+        yabai -m rule --add label=emacs app=Emacs manage=on
       '';
 
       # mouse_action2 = "resize";

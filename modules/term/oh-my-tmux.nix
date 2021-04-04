@@ -3,7 +3,7 @@
 let
   oh-my-tmux-conf-file = pkgs.fetchurl {
     url = "https://raw.githubusercontent.com/gpakosz/.tmux/master/.tmux.conf";
-    sha256 ="0ns94s7iq4y4wn0hv1w851gqczn78sslj807iwpwzmmjfknc585c";
+    sha256="1i5f3cgqh50vyjwxrv4ps3ipfncp8kgcgi531a412xbmrzwz5383";
     name = "dot-tmux";
   };
 in {

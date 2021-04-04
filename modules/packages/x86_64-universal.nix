@@ -121,6 +121,7 @@ with pkgs; [
 
   # C/C++
   gcc
+  # libgccjit FIXME
   cmake
 
   # Web

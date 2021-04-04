@@ -9,6 +9,7 @@ in {
   imports = [
     ../../mac/yabai.nix
     ../../mac/skhd.nix
+    ../../homebrew
 
     # ../mac/emacs-daemon.nix
     # ../modules/db/mongodb.nix
@@ -148,7 +149,8 @@ in {
     variables = import ../../env/vars.nix;
 
     systemPackages = with pkgs; [
-      emacsMacport
+      emacsGcc
+      # emacsMacport
       cachix
 
       pkg-config
@@ -198,6 +200,13 @@ in {
   programs.fish.enable = true;
   programs.bash.enable = true;
   programs.zsh.enable = true;
+
+  nixpkgs.overlays = [
+    (import (builtins.fetchTarball {
+      url = https://github.com/nix-community/emacs-overlay/archive/master.tar.gz;
+      sha256="sha256:11ab243scavmg0c69f3ynfqmyzhl8ra0ck6wmbzm66hvrcclxqbi";
+    }))
+  ];
 
   # FIXME the nixpkgs configuration is duplicated in home.nix as well
   # nixpkgs = {
