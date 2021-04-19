@@ -17,6 +17,7 @@ with pkgs; [
   mosh
   tcl
   lice
+  arion
 
   # text search & manipulation programs
   gawk
@@ -62,6 +63,8 @@ with pkgs; [
   ranger
   sqlite
   exiftool
+
+  # git
   git-sync
   gitAndTools.gh
   gitAndTools.grv
@@ -70,6 +73,7 @@ with pkgs; [
   gitAndTools.git-open
   gitAndTools.gh
   git-lfs
+
   wget
   w3m
   # thefuck FIXME
