@@ -149,7 +149,8 @@ in {
     variables = import ../../env/vars.nix;
 
     systemPackages = with pkgs; [
-      emacsGcc
+      # NOTE building Emacs takes ages
+      # emacsGcc
       # emacsMacport
       cachix
 

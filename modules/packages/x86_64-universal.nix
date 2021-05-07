@@ -7,6 +7,7 @@ with pkgs; [
   #
   linode-cli
   awscli2
+  terraform
 
   ###
   ### Utilities
@@ -21,7 +22,7 @@ with pkgs; [
 
   # text search & manipulation programs
   gawk
-  jsawk
+  # jsawk FIXME
   ack
   ripgrep
   ripgrep-all
