@@ -126,6 +126,8 @@ with pkgs; [
 
   # C/C++
   gcc
+  lldb
+  llvm
   # libgccjit FIXME
   cmake
 
