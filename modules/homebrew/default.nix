@@ -18,7 +18,7 @@ with lib; {
       # "1Password" = 1107421413;
       # "WireGuard" = 1451685025;
     };
-    casks = [ "gpg-suite" ];
+    casks = [ "gpg-suite" "font-iosevka" ];
     # brews = [
     #   # "emacs-plus@28"
     #   ''''
