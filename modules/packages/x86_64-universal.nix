@@ -6,7 +6,7 @@ with pkgs; [
   ###
   #
   linode-cli
-  awscli2
+  # awscli2 FIXME
   terraform
 
   ###
