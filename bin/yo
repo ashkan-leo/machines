@@ -35,23 +35,8 @@ then
         if [[ "$3" == dry ]]
         then
             darwin-rebuild build --flake "$FLAKE" --update-input nixpkgs
-            darwin-rebuild build --flake "$FLAKE" --update-input home-manager
-            darwin-rebuild build --flake "$FLAKE" --update-input darwin
-            darwin-rebuild build --flake "$FLAKE" --update-input nixpkgs-master
-            darwin-rebuild build --flake "$FLAKE" --update-input nixos-stable
-            darwin-rebuild build --flake "$FLAKE" --update-input nixpkgs-unstable
-            darwin-rebuild build --flake "$FLAKE" --update-input nixpkgs-stable-darwin
         else
-            # TODO is this the best way?
-            rm flake.lock
-
             darwin-rebuild switch --flake "$FLAKE" --update-input nixpkgs
-            darwin-rebuild switch --flake "$FLAKE" --update-input home-manager
-            darwin-rebuild switch --flake "$FLAKE" --update-input darwin
-            darwin-rebuild switch --flake "$FLAKE" --update-input nixpkgs-master
-            darwin-rebuild switch --flake "$FLAKE" --update-input nixos-stable
-            darwin-rebuild switch --flake "$FLAKE" --update-input nixpkgs-unstable
-            darwin-rebuild switch --flake "$FLAKE" --update-input nixpkgs-stable-darwin
         fi
     else
         echo "Error: Undefined action"
