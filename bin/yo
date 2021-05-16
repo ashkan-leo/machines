@@ -32,15 +32,18 @@ then
         rm flake.lock
 
         # TODO write a better logic for updating the flakes
-        if [[ "$3" == dry ]]
+        if [[ "$3" == build ]]
         then
             darwin-rebuild build --flake "$FLAKE" --update-input nixpkgs
-        else
+        elif [[ "$3" == switch ]]
+        then
             darwin-rebuild switch --flake "$FLAKE" --update-input nixpkgs
+        else
+            echo "ERROR: Undefined action"
         fi
     else
         echo "Error: Undefined action"
     fi
 else
-    echo "ERROR: Undefined Action."
+    echo "ERROR: Undefined action."
 fi
