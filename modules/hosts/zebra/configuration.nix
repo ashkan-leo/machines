@@ -16,20 +16,22 @@ in {
   ];
 
   # NOTE macOS font support seems broken in home-manager so add them here
-  fonts = {
-    enableFontDir = true;
-    fonts = with pkgs; [
+  # NOTE while these work here, the homebrew fonts are more reliable.
+  # So I'll use homebrew to manage my fonts on mac os.
+  # fonts = {
+  #   enableFontDir = true;
+  #   fonts = with pkgs; [
 
-      # programming fonts
-      jetbrains-mono
-      fira-code
-      fira-code-symbols
+  #     # programming fonts
+  #     jetbrains-mono
+  #     fira-code
+  #     fira-code-symbols
 
-      # terminal fonts
-      # TODO do I need all the fonts?
-      nerdfonts
-    ];
-  };
+  #     # terminal fonts
+  #     # TODO do I need all the fonts?
+  #     nerdfonts
+  #   ];
+  # };
 
   system.defaults = {
     SoftwareUpdate.AutomaticallyInstallMacOSUpdates = true;
