@@ -3,8 +3,9 @@
 let
   oh-my-tmux-conf-file = pkgs.fetchurl {
     url = "https://raw.githubusercontent.com/gpakosz/.tmux/master/.tmux.conf";
-    sha256="1i5f3cgqh50vyjwxrv4ps3ipfncp8kgcgi531a412xbmrzwz5383";
     name = "dot-tmux";
+    # date = 2021-05-16T17:47:44-0500;
+    sha256 = "1la4pblqlkqikpikgmscmq3x200n4rfksqzphd0kp2pw605psmxb";
   };
 in {
   programs.tmux = {
@@ -34,5 +35,5 @@ in {
     # ];
   };
   # copy oh my tmux local configurations
-  home.file.".tmux.conf.local".text = builtins.readFile ./tmux.conf.local;
+  # home.file.".tmux.conf.local".text = builtins.readFile ./tmux.conf.local;
 }
