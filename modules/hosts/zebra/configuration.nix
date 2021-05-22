@@ -33,6 +33,33 @@ in {
   #   ];
   # };
 
+  # Increase the maximum number of files and file descriptors
+  # FIXME this doesn't have the intended effect.
+  environment.etc."sysctl.conf" = {
+    enable = true;
+    text = ''
+      kern.maxfiles=10485760
+      kern.maxfilesperproc=1048576
+    '';
+  };
+
+  # Enable Touch ID sudo authentication
+  # FIXME this can't be done here. doing it manually for now.
+  # environment.etc."pam.d/sudo" = {
+  #   enable = true;
+  #   text = ''
+  #     # sudo: auth account password session
+  #     # AUTO GRENERATED FILE.
+  #     # DO NOT MODIFY BY HAND
+  #     auth       sufficient     pam_tid.so
+  #     auth       sufficient     pam_smartcard.so
+  #     auth       required       pam_opendirectory.so
+  #     account    required       pam_permit.so
+  #     password   required       pam_deny.so
+  #     session    required       pam_permit.so
+  #   '';
+  # };
+
   system.defaults = {
     SoftwareUpdate.AutomaticallyInstallMacOSUpdates = true;
 
@@ -191,7 +218,7 @@ in {
     # darwin-rebuild switch -I darwin-config=$HOME/.config/nixpkgs/darwin-configuration.nix
     # TODO write a bootstrap script that takes care of this step
     # darwinConfig = "${xdg_config_root}/nixpkgs/darwin-configuration.nix";
-    darwinConfig="$HOME/.config/nixpkgs/darwin-configuration.nix";
+    darwinConfig = "$HOME/.config/nixpkgs/darwin-configuration.nix";
   };
 
   # Auto upgrade nix package and the daemon service.
@@ -221,14 +248,14 @@ in {
   #     allowUnsupportedSystem = true;
   #   };
 
-    # TODO overlays? Do I need them?
-    # overlays =
-    #   let path = ../overlays; in with builtins;
-    #   map (n: import (path + ("/" + n)))
-    #       (filter (n: match ".*\\.nix" n != null ||
-    #                   pathExists (path + ("/" + n + "/default.nix")))
-    #               (attrNames (readDir path)))
-    #     ++ [ (import ./envs.nix) ];
+  # TODO overlays? Do I need them?
+  # overlays =
+  #   let path = ../overlays; in with builtins;
+  #   map (n: import (path + ("/" + n)))
+  #       (filter (n: match ".*\\.nix" n != null ||
+  #                   pathExists (path + ("/" + n + "/default.nix")))
+  #               (attrNames (readDir path)))
+  #     ++ [ (import ./envs.nix) ];
   # };
 
   # You should generally set this to the total number of logical cores in your system.

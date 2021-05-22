@@ -95,6 +95,7 @@ with pkgs; [
   # Development utilities
   cookiecutter
   fswatch
+  watchman
 
 
   # Scala
