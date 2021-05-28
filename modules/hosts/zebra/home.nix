@@ -5,10 +5,7 @@ let
   gitUserName = "ashkan-leo";
 
 in {
-  imports = [
-    ../../shell
-    ../../term
-  ];
+  imports = [ ../../shell ../../term ];
 
   home.packages = import ../../packages/x86_64-darwin.nix { inherit pkgs; }
     ++ import ../../packages/x86_64-universal.nix { inherit pkgs; };
@@ -19,7 +16,6 @@ in {
   #   userName = gitUserName;
   #   userEmail = emailAddress;
   # };
-
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
