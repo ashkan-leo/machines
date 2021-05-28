@@ -18,7 +18,7 @@ with pkgs; [
   mosh
   tcl
   lice
-  arion
+  # arion FIXME
 
   # text search & manipulation programs
   gawk
