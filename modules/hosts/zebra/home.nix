@@ -6,36 +6,19 @@ let
 
 in {
   imports = [
-    ../../shell/fish.nix
-    ../../shell/broot.nix
-    ../../shell/direnv.nix
-    ../../shell/misc.nix
-    ../../shell/ssh.nix
-
-    ../../tools/git.nix
-
-    ../../term/kitty.nix
-    ../../term/alacritty.nix
-    ../../term/oh-my-tmux.nix
-    # ./modules/term/pet.nix
-
-    # TODO implement spark
-    # ./modules/tools/sparkling.nix
-
-    # FIXME emacs causes yabai become unresponsive
-    # FIXME for now use the homebrew installation
-    # TODO fix the nix emacs installation and achieve nirvana
-    # ./modules/editor/emacs.nix
+    ../../shell
+    ../../term
   ];
 
   home.packages = import ../../packages/x86_64-darwin.nix { inherit pkgs; }
     ++ import ../../packages/x86_64-universal.nix { inherit pkgs; };
 
   # Configure git username and email for this profile
-  programs.git = {
-    userName = gitUserName;
-    userEmail = emailAddress;
-  };
+  # NOTE somewhere, somehow these are set to my full name and the above email address
+  # programs.git = {
+  #   userName = gitUserName;
+  #   userEmail = emailAddress;
+  # };
 
 
   # This value determines the Home Manager release that your
