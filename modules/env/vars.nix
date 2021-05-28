@@ -17,7 +17,6 @@
 
   VIRTUAL_ENV_DISABLE_PROMPT = "1";
 
-  # FIXME this doesn't work....
   SHELL = "$HOME/.nix-profile/bin/fish";
 
   PAGER = "bat";

@@ -11,11 +11,10 @@ in {
     ++ import ../../packages/x86_64-universal.nix { inherit pkgs; };
 
   # Configure git username and email for this profile
-  # NOTE somewhere, somehow these are set to my full name and the above email address
-  # programs.git = {
-  #   userName = gitUserName;
-  #   userEmail = emailAddress;
-  # };
+  programs.git = {
+    userName = gitUserName;
+    userEmail = emailAddress;
+  };
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
