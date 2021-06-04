@@ -21,7 +21,8 @@
     };
   };
   outputs = inputs@{ self, darwin, nixpkgs, home-manager, nixpkgs-master
-    , nixpkgs-stable-darwin, nixos-stable, nixpkgs-unstable, nixos-hardware }:
+    , nixpkgs-stable-darwin, nixos-stable, nixpkgs-unstable, nixos-hardware
+    , flake-utils }:
     let
       # This is passed to the home-manager.
       # Common Configuration
