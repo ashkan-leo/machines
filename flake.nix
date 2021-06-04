@@ -1,6 +1,5 @@
 {
   description = "Ashkan's Nix Machines";
-
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-master.url = "github:nixos/nixpkgs/master";
@@ -18,7 +17,6 @@
     };
     # flake-utils.url = "github:numtide/flake-utils";
   };
-
   outputs = inputs@{ self, darwin, nixpkgs, home-manager, nixpkgs-master
     , nixpkgs-stable-darwin, nixos-stable, nixpkgs-unstable, nixos-hardware }:
     let
@@ -104,6 +102,7 @@
         # the host names should match exactly to the system $HOST
         # TODO make this functionality more robust -- change $HOST if needed
         zebra.lan = darwin.lib.darwinSystem {
+          system = "x86_64_darwin";
           modules = darwinModules {
             user = "ashkanaleali";
             host = "zebra";
@@ -129,6 +128,4 @@
         };
       };
     };
-
 }
-
