@@ -15,12 +15,16 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # flake-utils.url = "github:numtide/flake-utils";
+    flake-utils = {
+      url = "github:numtide/flake-utils";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   outputs = inputs@{ self, darwin, nixpkgs, home-manager, nixpkgs-master
     , nixpkgs-stable-darwin, nixos-stable, nixpkgs-unstable, nixos-hardware }:
     let
       # This is passed to the home-manager.
+      # Common Configuration
       nixpkgsConfig = with inputs; {
         config = {
           allowUnfree = true;
@@ -29,20 +33,18 @@
           permittedInsecurePackages = [ "spidermonkey-38.8.0" ];
         };
       };
+      # Common Configuration
       nixosCommonConfiguration = { pkgs, ... }: {
         nix = {
           package = pkgs.nixFlakes;
           extraOptions = "experimental-features = nix-command flakes";
-          binaryCaches = [
-            "https://cache.nixos.org/"
-            # "https://hardselius.cachix.org"
-          ];
+          binaryCaches = [ "https://cache.nixos.org/" ];
           binaryCachePublicKeys = [
             "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-            # "hardselius.cachix.org-1:wdmClEq/2j8gEKJ5vLLCmpgCDumsyPMO6iVWKkYHKP0="
           ];
         };
       };
+      # Darwin Common Configuration
       darwinCommonConfiguration = { pkgs, ... }: {
         nix = {
           package = pkgs.nixFlakes;
@@ -58,6 +60,8 @@
         };
         services.nix-daemon.enable = true;
       };
+      # Produce a Darwin System configuration given the username and the hostname
+      # Requires Admin Access to system
       darwinModules = { user, host }:
         with inputs; [
           (./. + "/modules/hosts/${host}/configuration.nix")
@@ -65,9 +69,6 @@
           home-manager.darwinModules.home-manager
           {
             nixpkgs = nixpkgsConfig;
-            # nix.nixPath = {
-            #   nixpkgs = "$HOME/.config/nixpkgs/nixpkgs.nix";
-            # };
             users.nix.configureBuildUsers = true;
             users.users.${user}.home = "/Users/${user}";
             home-manager = {
@@ -78,6 +79,8 @@
             };
           }
         ];
+      # Produce a common linux System configuration given the username and the hostname
+      # FIXME Requires Admin Access to system
       linuxModules = { user, host }:
         with inputs; [
           (./. + "/modules/hosts/${host}/configuration.nix")
@@ -105,9 +108,9 @@
           system = "x86_64_darwin";
           modules = darwinModules {
             user = "ashkanaleali";
-            host = "zebra";
+            host =
+              "zebra"; # NOTE this MUST match the directory in modules/HOST_NAME/
           };
-          # inputs = { inherit darwin nixpkgs home-manager; };
         };
       };
       nixosConfigurations = {
@@ -116,7 +119,8 @@
           system = "x86_64-linux";
           modules = linuxModules {
             user = "ashkanaleali";
-            host = "nano";
+            host =
+              "nano"; # NOTE this MUST match the directory in modules/HOST_NAME/
           };
         };
         toby = nixpkgs.lib.nixosSystem {
