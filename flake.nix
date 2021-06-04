@@ -120,6 +120,13 @@
             host = "nano";
           };
         };
+        toby = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          modules = linuxModules {
+            user = "ashkan";
+            host = "learner";
+          };
+        };
       };
     };
 
