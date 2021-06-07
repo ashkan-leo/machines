@@ -106,7 +106,6 @@
         # the host names should match exactly to the system $HOST
         # TODO make this functionality more robust -- change $HOST if needed
         zebra.lan = darwin.lib.darwinSystem {
-          system = "x86_64_darwin";
           modules = darwinModules {
             user = "ashkanaleali";
             host =
