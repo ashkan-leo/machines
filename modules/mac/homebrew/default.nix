@@ -117,6 +117,7 @@ in {
     };
 
     casks = [ "gpg-suite" ] ++ nerdFonts ++ programmerFonts;
+    brews = [ "pkg-config" ];
     # brews = [
     #   # "emacs-plus@28"
     #   ''''
