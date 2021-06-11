@@ -13,7 +13,7 @@ SUB_COMMAND=$1
 if [[ "$SUB_COMMAND" == uninstall ]]; then
     echo "Uninstalling nix-darwin and nix package manager"
     echo "This will not remove any configuration file from the system"
-    cd /tmp
+    cd /tmp || exit
 
     # uninstall nix-darwin if it exists
     if command -v nix-build &> /dev/null
@@ -111,8 +111,8 @@ elif [[ "$SUB_COMMAND" == install ]]; then
     # TODO generalize to non-darwin systems
     # TODO figure out how to resolve issues for dirty worktree
     # TODO figure out if --max-jobs auto option has the desired functionality
-    cd $FLAKE
-    nix build --max-jobs auto ./\#darwinConfigurations.$HOST_NAME.system
+    cd "$FLAKE" || exit
+    nix build --max-jobs auto ./\#darwinConfigurations."$HOST_NAME".system
 
     # NOTE this seems to help with a ghost bug
     # Remove the certificate nix-darwin contain if it exist
