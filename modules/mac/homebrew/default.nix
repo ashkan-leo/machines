@@ -116,7 +116,7 @@ in {
       # "WireGuard" = 1451685025;
     };
 
-    casks = [ "gpg-suite" ] ++ nerdFonts ++ programmerFonts;
+    casks = [ "gpg-suite" "darktable" ] ++ nerdFonts ++ programmerFonts;
     brews = [ "pkg-config" ];
     # brews = [
     #   # "emacs-plus@28"
