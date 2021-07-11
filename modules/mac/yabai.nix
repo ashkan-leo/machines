@@ -25,16 +25,16 @@
       window_gap = 6;
 
       extraConfig = ''
-        yabai -m rule --add app="System Preferences" manage=off
-        yabai -m rule --add app="1Password" manage=off
-        yabai -m rule --add app="Messages" manage=off
-        yabai -m rule --add app="Dictionary" manage=off
-        yabai -m rule --add app="Telegram" manage=off
-        yabai -m rule --add app="BetterTouchTool" manage=off
-        yabai -m rule --add app="App Store" manage=off
-        yabai -m rule --add app="FaceTime" manage=off
-        yabai -m rule --add app="Wally" manage=off
-        yabai -m rule --add app="Alfred Preferences" manage=off
+        yabai -m rule --add label=preferences app="System Preferences" manage=off
+        yabai -m rule --add label=1password app="1Password" manage=off
+        yabai -m rule --add label=messages app="Messages" manage=off
+        yabai -m rule --add label=dictionary app="Dictionary" manage=off
+        yabai -m rule --add label=telegram app="Telegram" manage=off
+        yabai -m rule --add label=btt app="BetterTouchTool" manage=off
+        yabai -m rule --add label=appstore app="App Store" manage=off
+        yabai -m rule --add label=facetime app="FaceTime" manage=off
+        yabai -m rule --add label=wally app="Wally" manage=off
+        yabai -m rule --add label=alfred app="Alfred Preferences" manage=off
 
         yabai -m rule --add label=emacs app=Emacs manage=on
       '';
