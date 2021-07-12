@@ -9,6 +9,12 @@ with lib; {
     end
   '';
 
+  # activate z.lua
+  xdg.configFile."fish/conf.d/z.fish".text = mkAfter ''
+    lua /path/to/z.lua --init fish | source
+    set -gx _ZL_CD cd
+  '';
+
   # FIXME this doesn't work
   # define custom keybindings
   xdg.configFile."fish/functions/fish_user_key_bindings.fish".text = mkAfter ''
