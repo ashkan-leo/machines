@@ -10,10 +10,10 @@ with lib; {
   '';
 
   # activate z.lua
-  xdg.configFile."fish/conf.d/z.fish".text = mkAfter ''
-    lua /path/to/z.lua --init fish | source
-    set -gx _ZL_CD cd
-  '';
+  # xdg.configFile."fish/conf.d/z.fish".text = mkAfter ''
+  #  lua /path/to/z.lua --init fish | source
+  #  set -gx _ZL_CD cd
+  #'';
 
   # FIXME this doesn't work
   # define custom keybindings
