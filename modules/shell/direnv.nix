@@ -6,7 +6,7 @@
 
     # TODO check out direnv nix integration
     # https://github.com/nix-community/nix-direnv
-    enableNixDirenvIntegration = false;
+    nix-direnv.enable = true;
 
     # enable python-venv builtin support in direnv
     stdlib = ''
