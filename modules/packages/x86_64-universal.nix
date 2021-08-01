@@ -66,7 +66,7 @@ with pkgs; [
   exiftool
 
   # git
-  git-sync
+  # git-sync FIXME
   gitAndTools.gh
   gitAndTools.grv
   gitAndTools.gita
