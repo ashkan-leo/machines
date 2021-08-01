@@ -6,7 +6,7 @@ with pkgs; [
   ###
   #
   linode-cli
-  # awscli2 FIXME
+  awscli2
   terraform
 
   ###
@@ -18,11 +18,11 @@ with pkgs; [
   mosh
   tcl
   lice
-  # arion FIXME
+  arion
 
   # text search & manipulation programs
   gawk
-  # jsawk FIXME
+  # jsawk FIXME depends on spidermonkey which doesn't build under os x
   ack
   ripgrep
   ripgrep-all
@@ -106,7 +106,7 @@ with pkgs; [
   metals
 
   # Nix
-  # nixops FIXME
+  nixops
   nixfmt
   nix-doc
   manix
