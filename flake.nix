@@ -112,6 +112,13 @@
               "zebra"; # NOTE this MUST match the directory in modules/HOST_NAME/
           };
         };
+        chi-aaleali-mac = darwin.lib.darwinSystem {
+          modules = darwinModules {
+            user = "aaleali";
+            host =
+              "chi-aaleali-mac"; # NOTE this MUST match the directory in modules/HOST_NAME/
+          };
+        };
       };
       nixosConfigurations = {
         ## The linode nano instance
