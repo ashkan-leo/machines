@@ -25,6 +25,7 @@ Linux machines as well.
      1) Create a new directory with the machine's
         host name in ~modules/hosts/HOST_NAME~ and copy ~configuration.nix~ 
         and ~home.nix~ from some other host directory to the newly created one.
+        Then, modify the configuration files per liking.
      2) Create a new flake entry in ~flake.nix~. 
 3. ~cd~ to the repo directory and run:
    #+BEGIN_SRC bash
