@@ -21,6 +21,11 @@ Linux machines as well.
    ~$xdg_config_home/nixpkgs~.
 2. Ensure there exist a flake for the current host and username (check out
    ~flake.nix~ for the complete list).
+   + If setting up a new system: 
+     1) Create a new directory with the machine's
+        host name in ~modules/hosts/HOST_NAME~ and copy ~configuration.nix~ 
+        and ~home.nix~ from some other host directory to the newly created one.
+     2) Create a new flake entry in ~flake.nix~. 
 3. ~cd~ to the repo directory and run:
    #+BEGIN_SRC bash
    bin/yo-mac-installer install $HOST
