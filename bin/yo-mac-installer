@@ -81,7 +81,7 @@ elif [[ "$SUB_COMMAND" == install ]]; then
     if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]
     then
         echo Infecting the shell
-        . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+        source '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
     fi
 
     # TODO install git if not present. we may need it.
@@ -104,7 +104,7 @@ elif [[ "$SUB_COMMAND" == install ]]; then
 
     # TODO do we need this?
     # TODO may be needed if the system doesn't have /run
-    # sudo ln -s private/var/run /run
+    sudo ln -s /private/var/run /run
 
     # Bootstrap the system given the host name
     # Write `result` to the flake root directory
@@ -119,15 +119,15 @@ elif [[ "$SUB_COMMAND" == install ]]; then
     # sudo rm /etc/ssl/certs/ca-certificates.crt 2> /dev/null
 
     # NOTE instead of backing up stuff, which is a sad way of achieving reversibility delete them all!
-    sudo rm /etc/zshrc/
-    sudo rm /etc/bashrc
-    sudo rm /nix/nix.conf
+    sudo mv /etc/zshrc/ /etc/zshrc.bak
+    sudo mv /etc/bashrc /etc/bashrc.bak
+    sudo mv /nix/nix.conf /nix/nix.conf /nix/nix.conf.bak
 
     # Activate the nix-darwin configuration    
     "$FLAKE"/result/sw/bin/darwin-rebuild switch --flake "$FLAKE"
 
     echo All Done!
-    echo "It's a good idea to reboot your system now."
+    echo Its a good idea to reboot your system now.
 
     # # NOTE the following script did not work for mac OS 11.1 at the time of writing.
     # # curl -L https://github.com/numtide/nix-flakes-installer/releases/download/nix-2.4pre20201221_9fab14a/install > nix_flake_install.sh
