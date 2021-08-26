@@ -76,7 +76,6 @@ let
     "font-iosevka-ss17"
     "font-iosevka-aile"
     "font-iosevka-etoile"
-    "font-iosevka-sparkle"
     "font-iosevka-ss03"
     "font-iosevka-ss06"
     "font-iosevka-ss09"
@@ -91,7 +90,7 @@ let
     "font-iosevka-ss16"
 
     # jetbrain family
-    "font-jetbrains-mono"
+    # "font-jetbrains-mono" the jetbrains mono nerd fonts installs this as well
     "jetbrains-space"
     "jetbrains-toolbox"
   ];
@@ -116,8 +115,8 @@ in {
       # "WireGuard" = 1451685025;
     };
 
-    casks = [ "gpg-suite" "darktable" ] ++ nerdFonts ++ programmerFonts;
-    brews = [ "pkg-config" ];
+    casks = [ "darktable" ] ++ nerdFonts ++ programmerFonts;
+    brews = [ "pkg-config" "gpg-suite" ];
     # brews = [
     #   # "emacs-plus@28"
     #   ''''
