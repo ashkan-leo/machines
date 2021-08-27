@@ -17,8 +17,6 @@
 
   VIRTUAL_ENV_DISABLE_PROMPT = "1";
 
-  SHELL = "$HOME/.nix-profile/bin/fish";
-
   PAGER = "bat";
   MANPAGER = "bat";
   EDITOR = "emacsclient";

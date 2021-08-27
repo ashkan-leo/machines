@@ -10,11 +10,11 @@ with lib; {
         user = "ashkanaleali";
         identityFile = "~/.ssh/id_rsa";
       };
-      "toby" = {
-        hostname = "192.168.1.101";
-        user = "ashkan";
-        identityFile = "~/.ssh/id_used_for_tshearman_machines";
-      };
+#      "toby" = {
+#        hostname = "192.168.1.101";
+#        user = "ashkan";
+#        identityFile = "~/.ssh/id_used_for_tshearman_machines";
+#      };
     };
   };
 }

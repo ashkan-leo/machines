@@ -7,6 +7,7 @@
     - [[#installation][Installation]]
     - [[#uninstallation][Uninstallation]]
 - [[#hosts][Hosts]]
+  - [[#define-a-new-host][Define a new host]]
 
 * Introduction
 This repository is an on-going effort to move my dotfiles to ~nix~ package manager
@@ -20,7 +21,8 @@ Linux machines as well.
 1. Clone this repository to a directory of your choice. I usually clone it in
    ~$xdg_config_home/nixpkgs~.
 2. Ensure there exist a flake for the current host and username (check out
-   ~flake.nix~ for the complete list).
+   ~flake.nix~ for the complete list). If setting up a new host, check out [[*Define a new host][Define
+   a new host]] section.
 3. ~cd~ to the repo directory and run:
    #+BEGIN_SRC bash
    bin/yo-mac-installer install $HOST
@@ -34,6 +36,17 @@ bin/yo-mac-installer uninstall
 Note this will not remove the nix configuration files.
 
 * Hosts
-| Host      | OS     | Notes                   |
-|-----------+--------+-------------------------|
-| zebra.lan | Darwin | My personal MacBook Pro |
+|-----------------+--------+-------------------------|
+| Host            | OS     | Notes                   |
+|-----------------+--------+-------------------------|
+| zebra.lan       | Darwin | My personal MacBook Pro |
+| chi-aaleali-Mac | Darwin | Work MacBook Pro        |
+
+** Define a new host
+1) Create a new directory with the machine's host name in
+   ~modules/hosts/HOST_NAME~ and copy ~configuration.nix~ and ~home.nix~ from some
+   other host directory to the newly created one. Then, modify the configuration
+   files per liking.
+2) Add the newly created files to git. There is no need to commit the changes at
+   this point. Nix-flake uses git as the underlying file system.
+3) Create a new flake entry in ~flake.nix~ pointing to the newly added host.
