@@ -6,7 +6,7 @@
 
   environment = {
     # a list of common environment vars (editor, etc.)
-    variables = import ../../env/vars.nix;
+    variables = import ../env/vars.nix;
 
     # shells managed by nix is listed here
     # you can change to them by running chsh -s /run/current-system/sw/bin/fish

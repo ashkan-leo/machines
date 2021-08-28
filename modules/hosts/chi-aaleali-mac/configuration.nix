@@ -1,2 +1,1 @@
-{ config, lib, pkgs, ... }:
-{ imports = [ ../../mac ]; }
+{ config, lib, pkgs, ... }: { imports = [ ../../mac ]; }
