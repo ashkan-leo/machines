@@ -58,39 +58,39 @@ let
 
     # fira-code family
     "font-fira-mono"
+    "font-firago"
     "font-fira-mono-for-powerline"
     "font-fira-sans"
     "font-fira-sans-condensed"
-    "font-fira-sans-extra-condensed"
-    "font-firago"
+    # "font-fira-sans-extra-condensed"
 
     # iosevka family
     "font-iosevka"
     "font-iosevka-curly-slab"
     "font-iosevka-slab"
-    "font-iosevka-ss02"
-    "font-iosevka-ss05"
-    "font-iosevka-ss08"
-    "font-iosevka-ss11"
-    "font-iosevka-ss14"
-    "font-iosevka-ss17"
-    "font-iosevka-aile"
-    "font-iosevka-etoile"
-    "font-iosevka-ss03"
-    "font-iosevka-ss06"
-    "font-iosevka-ss09"
-    "font-iosevka-ss12"
-    "font-iosevka-ss15"
-    "font-iosevka-curly"
-    "font-iosevka-ss01"
-    "font-iosevka-ss04"
-    "font-iosevka-ss07"
-    "font-iosevka-ss10"
-    "font-iosevka-ss13"
-    "font-iosevka-ss16"
+    # "font-iosevka-ss02"
+    # "font-iosevka-ss05"
+    # "font-iosevka-ss08"
+    # "font-iosevka-ss11"
+    # "font-iosevka-ss14"
+    # "font-iosevka-ss17"
+    # "font-iosevka-aile"
+    # "font-iosevka-etoile"
+    # "font-iosevka-ss03"
+    # "font-iosevka-ss06"
+    # "font-iosevka-ss09"
+    # "font-iosevka-ss12"
+    # "font-iosevka-ss15"
+    # "font-iosevka-curly"
+    # "font-iosevka-ss01"
+    # "font-iosevka-ss04"
+    # "font-iosevka-ss07"
+    # "font-iosevka-ss10"
+    # "font-iosevka-ss13"
+    # "font-iosevka-ss16"
 
-    # jetbrain family
-    # "font-jetbrains-mono" the jetbrains mono nerd fonts installs this as well
+    # # jetbrain family
+    # # "font-jetbrains-mono" the jetbrains mono nerd fonts installs this as well
     "jetbrains-space"
     "jetbrains-toolbox"
   ];
@@ -98,7 +98,7 @@ in {
   homebrew = {
     enable = true;
     autoUpdate = true;
-    cleanup = "none"; # TODO change to zap
+    cleanup = "zap";
     taps = [
       "homebrew/cask"
       "homebrew/cask-drivers"
@@ -115,8 +115,8 @@ in {
       # "WireGuard" = 1451685025;
     };
 
-    casks = [ "darktable" ] ++ nerdFonts ++ programmerFonts;
-    brews = [ "pkg-config" "gpg-suite" ];
+    casks = [ "darktable" "gpg-suite" ] ++ nerdFonts ++ programmerFonts;
+    brews = [ "pkg-config" ];
     # brews = [
     #   # "emacs-plus@28"
     #   ''''
