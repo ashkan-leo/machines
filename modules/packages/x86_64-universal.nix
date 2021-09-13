@@ -22,13 +22,13 @@ with pkgs; [
 
   # text search & manipulation programs
   gawk
-  # jsawk FIXME depends on spidermonkey which doesn't build under os x
   ack
   ripgrep
   ripgrep-all
   silver-searcher
   findutils
   fd
+  # jsawk FIXME depends on spidermonkey which doesn't build under os x
 
   ###
   ### Natural Language
@@ -92,7 +92,6 @@ with pkgs; [
   #
 
   nodePackages.prettier
-  # Development utilities
   cookiecutter
   fswatch
   watchman
@@ -119,8 +118,8 @@ with pkgs; [
   # Python
   poetry
   nodePackages.pyright
-  # python39Full
-  # pipenv
+  python39Packages.nose
+  pipenv
 
   # Kubernetese
   # minikube
@@ -129,8 +128,16 @@ with pkgs; [
   gcc
   lldb
   llvm
-  # libgccjit FIXME
   cmake
+  # libgccjit FIXME
+
+  # Rust
+  rls
+  nodePackages.coc-rls
+
+
+  # Shell
+  nodePackages.bash-language-server
 
   # Web
   hugo
