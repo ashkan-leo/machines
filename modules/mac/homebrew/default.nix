@@ -66,8 +66,8 @@ let
 
     # iosevka family
     "font-iosevka"
-    "font-iosevka-curly-slab"
-    "font-iosevka-slab"
+    # "font-iosevka-curly-slab"
+    # "font-iosevka-slab"
     # "font-iosevka-ss02"
     # "font-iosevka-ss05"
     # "font-iosevka-ss08"
@@ -115,7 +115,7 @@ in {
       # "WireGuard" = 1451685025;
     };
 
-    casks = [ "darktable" "gpg-suite" ] ++ nerdFonts ++ programmerFonts;
+    casks = [ "darktable" ] ++ nerdFonts ++ programmerFonts;
     brews = [ "pkg-config" ];
     # brews = [
     #   # "emacs-plus@28"
