@@ -36,5 +36,5 @@ in {
   };
   # copy oh my tmux local configurations
   home.file.".tmux.conf.local".text = builtins.readFile ./tmux.conf.local;
-  home.file."tmux.conf".text = builtins.readFile "${oh-my-tmux-conf-file}";
+  home.file.".tmux.conf".text = builtins.readFile "${oh-my-tmux-conf-file}";
 }
