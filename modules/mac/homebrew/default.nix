@@ -66,8 +66,8 @@ let
 
     # iosevka family
     "font-iosevka"
-    "font-iosevka-curly-slab"
-    "font-iosevka-slab"
+    # "font-iosevka-curly-slab"
+    # "font-iosevka-slab"
     # "font-iosevka-ss02"
     # "font-iosevka-ss05"
     # "font-iosevka-ss08"
