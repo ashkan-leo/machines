@@ -68,7 +68,7 @@ with pkgs; [
   # git
   # git-sync FIXME
   gitAndTools.gh
-  gitAndTools.grv
+  # gitAndTools.grv
   gitAndTools.gita
   gitAndTools.ghorg
   gitAndTools.git-open
@@ -105,7 +105,7 @@ with pkgs; [
   metals
 
   # Nix
-  nixops
+  # nixops
   nixfmt
   nix-doc
   manix

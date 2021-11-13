@@ -104,8 +104,11 @@ elif [[ "$SUB_COMMAND" == install ]]; then
 
     # TODO do we need this?
     # TODO may be needed if the system doesn't have /run
-    sudo ln -s /private/var/run /run
-
+    # sudo ln -s /private/var/run /run
+    # Create a symlink to /var/run with:
+    # $ echo 'run\tprivate/var/run' | sudo tee -a /etc/synthetic.conf
+    # $ /System/Library/Filesystems/apfs.fs/Contents/Resources/apfs.util -B
+    # $ /System/Library/Filesystems/apfs.fs/Contents/Resources/apfs.util -t
     # Bootstrap the system given the host name
     # Write `result` to the flake root directory
     # TODO generalize to non-darwin systems

@@ -5,7 +5,7 @@ let
     url = "https://raw.githubusercontent.com/gpakosz/.tmux/master/.tmux.conf";
     name = "dot-tmux";
     # date = 2021-05-16T17:47:44-0500;
-    sha256 = "1la4pblqlkqikpikgmscmq3x200n4rfksqzphd0kp2pw605psmxb";
+    sha256 = "1maxpmshb8r8zjg1dnlgdyyx4p2a5mgp68m2mkyihhqjwnf6qyz1";
   };
 in {
   programs.tmux = {
