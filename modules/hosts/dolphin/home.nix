@@ -5,7 +5,7 @@ let
   gitUserName = "ashkan-leo";
 
 in {
-  imports = [ ../../shell ../../term ];
+  imports = [ ../../shell ../../term ../../mac/yabai ];
 
   home.packages = import ../../packages/x86_64-darwin.nix { inherit pkgs; }
     ++ import ../../packages/x86_64-universal.nix { inherit pkgs; };
@@ -15,6 +15,7 @@ in {
     userName = gitUserName;
     userEmail = emailAddress;
   };
+  programs.vim.enable = true;
 
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
