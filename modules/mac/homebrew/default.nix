@@ -84,13 +84,22 @@ in {
       "railwaycat/emacsmacport"
     ];
 
-    # FIXME App store apps gives an error.
     masApps = {
       "1Password" = 1333542190;
+      "HazeOver" = 430798174;
+      "Pocket" = 568494494;
+      "Tailscale" = 1475387142;
+      "Drafts" = 1435957248;
+      "WireGuard" = 1451685025;
+      "GoodNotes 5" = 1444383602;
+      "Spike Email" = 707452888;
+      "Things 3" = 904280696;
+      "Rouzshomar" = 476295182;
       # "WireGuard" = 1451685025;
     };
 
-    casks = [ "darktable" "firefox-beta" ] ++ nerdFonts ++ programmerFonts;
+    casks = [ "darktable" "firefox-beta" "amethyst" "alacritty" ] ++ nerdFonts
+      ++ programmerFonts;
     brews = [ "pkg-config" "svn" "openssl@1.1" ];
     # brews = [
     #   # "emacs-plus@28"
@@ -98,8 +107,9 @@ in {
     # ];
     # brew "emacs-plus@28", args:["with-ctags", "with-debug", "with-xwidgets", "with-native-comp", "with-dbus", "with-mailutils", "with-emacsicon4-icon"]
     extraConfig = ''
-      brew "emacs-mac", args:["with-rsvg", "with-no-title-bars", "with-emacs-big-sur-icon", "with-mac-metal", "with-starter", "with-ctags"]
+      brew "emacs-mac", args:["with-rsvg", "with-emacs-big-sur-icon", "with-mac-metal", "with-starter", "with-ctags"]
       brew "koekeishiya/formulae/yabai", args: [ "HEAD" ]
+      brew "emacs-plus@28", args:["with-ctags", "with-debug", "with-xwidgets", "with-native-comp", "with-dbus", "with-mailutils", "with-emacsicon4-icon"]
     '';
   };
 }
