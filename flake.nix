@@ -108,22 +108,20 @@
         zebra.lan = darwin.lib.darwinSystem {
           modules = darwinModules {
             user = "ashkanaleali";
-            host =
-              "zebra"; # NOTE this MUST match the directory in modules/HOST_NAME/
+            host = "zebra";
           };
         };
-        dolphin.lan = darwin.lib.darwinSystem {
- 	  system = "aarch64-darwin";
-	  modules = darwinModules {
-	    user = "ashkan";
-	    host = "dolphin";
-	  };
+        dolphin = darwin.lib.darwinSystem {
+          system = "aarch64-darwin";
+          modules = darwinModules {
+            user = "ashkan";
+            host = "dolphin";
+          };
         };
         chi-aaleali-mac = darwin.lib.darwinSystem {
           modules = darwinModules {
             user = "aaleali";
-            host =
-              "chi-aaleali-mac"; # NOTE this MUST match the directory in modules/HOST_NAME/
+            host = "chi-aaleali-mac";
           };
         };
       };
@@ -133,8 +131,7 @@
           system = "x86_64-linux";
           modules = linuxModules {
             user = "ashkanaleali";
-            host =
-              "nano"; # NOTE this MUST match the directory in modules/HOST_NAME/
+            host = "nano";
           };
         };
         toby = nixpkgs.lib.nixosSystem {
