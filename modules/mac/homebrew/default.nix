@@ -106,9 +106,9 @@ in {
     #   ''''
     # ];
     # brew "emacs-plus@28", args:["with-ctags", "with-debug", "with-xwidgets", "with-native-comp", "with-dbus", "with-mailutils", "with-emacsicon4-icon"]
+    # brew "koekeishiya/formulae/yabai", args: [ "287546ac23c36f687842905e2d7e5a93746994f9" ]
     extraConfig = ''
       brew "emacs-mac", args:["with-rsvg", "with-emacs-big-sur-icon", "with-mac-metal", "with-starter", "with-ctags"]
-      brew "koekeishiya/formulae/yabai", args: [ "HEAD" ]
       brew "emacs-plus@28", args:["with-ctags", "with-debug", "with-xwidgets", "with-native-comp", "with-dbus", "with-mailutils", "with-emacsicon4-icon"]
     '';
   };

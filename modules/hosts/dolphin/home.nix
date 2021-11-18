@@ -17,6 +17,13 @@ in {
   };
   programs.vim.enable = true;
 
+  programs.ssh.matchBlocks = {
+    "titan" = {
+      hostname = "192.168.1.6";
+      user = "ashkan";
+    };
+  };
+
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
   # when a new Home Manager release introduces backwards

@@ -6,7 +6,7 @@
   programs.bat = {
     enable = true;
     config = {
-      theme = "solarized";
+      theme = "Solarized (dark)";
       pager = "less -FR";
       map-syntax = [ "*.jenkinsfile:Groovy" "*.props:Java Properties" ];
     };
