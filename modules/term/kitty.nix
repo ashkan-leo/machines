@@ -2,7 +2,7 @@
 
 {
   programs.kitty = {
-    enable = true;
+    enable = false;
 
     # settings = { ; };
     extraConfig = "macos_option_as_alt yes";

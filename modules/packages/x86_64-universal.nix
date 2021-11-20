@@ -65,15 +65,16 @@ with pkgs; [
   sqlite
   exiftool
 
-  # git
+  # git and friends
   # git-sync FIXME
   gitAndTools.gh
-  gitAndTools.grv
+  # gitAndTools.grv
   gitAndTools.gita
   gitAndTools.ghorg
   gitAndTools.git-open
   gitAndTools.gh
   git-lfs
+  subversion
 
   wget
   w3m
@@ -82,6 +83,7 @@ with pkgs; [
   fasd
   jq
   fzf
+  openssl
   tealdeer
   most
   # xscreensaver
@@ -105,7 +107,7 @@ with pkgs; [
   metals
 
   # Nix
-  nixops
+  # nixops
   nixfmt
   nix-doc
   manix
