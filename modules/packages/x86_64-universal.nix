@@ -19,6 +19,7 @@ with pkgs; [
   tcl
   lice
   arion
+  libvterm
 
   # text search & manipulation programs
   gawk
@@ -131,6 +132,8 @@ with pkgs; [
   lldb
   llvm
   cmake
+  gnumake
+  libtool
   # libgccjit FIXME
 
   # Rust
