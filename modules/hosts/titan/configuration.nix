@@ -1,13 +1,10 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { config, pkgs, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ../../network/tailscale.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -45,7 +42,9 @@
 
   environment = {
     # a list of common environment vars (editor, etc.)
-    variables = import ../../env/vars.nix;
+    # FIXME this doesn't work using fish shell in Linux
+    # comment out and set in the fish module specifically
+    # variables = import ../../env/vars.nix;
 
     # shells managed by nix is listed here
     # you can change to them by running chsh -s /run/current-system/sw/bin/fish
@@ -55,9 +54,13 @@
   # You should generally set this to the total number of logical cores in your system.
   # $ sysctl -n hw.ncpu
   nix = {
-    maxJobs = 8;
+    maxJobs = 32;
     buildCores = 0;
   };
+
+  # enable mosh and open associate ports
+  programs.mosh.enable = true;
+  networking.firewall.allowedTCPPortRanges = [ { from = 60000; to = 61000; } ];
 
   # Configure keymap in X11
   # services.xserver.layout = "us";
@@ -77,6 +80,7 @@
   users.users.ashkan = {
     isNormalUser = true;
     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+    shell = pkgs.fish;
   };
 
   # List packages installed in system profile. To search, run:
