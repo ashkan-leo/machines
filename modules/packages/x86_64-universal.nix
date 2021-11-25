@@ -20,6 +20,7 @@ with pkgs; [
   lice
   arion
   libvterm
+  pciutils
 
   # text search & manipulation programs
   gawk
