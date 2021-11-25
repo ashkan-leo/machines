@@ -1,11 +1,10 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ../../network/tailscale.nix
-    ];
+  imports = [ # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ../../network/tailscale.nix
+  ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -39,7 +38,6 @@
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
 
-
   environment = {
     # a list of common environment vars (editor, etc.)
     # FIXME this doesn't work using fish shell in Linux
@@ -48,7 +46,7 @@
 
     # shells managed by nix is listed here
     # you can change to them by running chsh -s /run/current-system/sw/bin/fish
-    shells = with pkgs; [bashInteractive fish zsh];
+    shells = with pkgs; [ bashInteractive fish zsh ];
   };
 
   # You should generally set this to the total number of logical cores in your system.
@@ -60,7 +58,6 @@
 
   # enable mosh and open associate ports
   programs.mosh.enable = true;
-  networking.firewall.allowedTCPPortRanges = [ { from = 60000; to = 61000; } ];
 
   # Configure keymap in X11
   # services.xserver.layout = "us";
@@ -83,10 +80,7 @@
     shell = pkgs.fish;
   };
 
-  users.users.toby = {
-    isNormalUser = true;
-  };
-
+  users.users.toby = { isNormalUser = true; };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -112,6 +106,56 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
 
+  services.grafana = {
+    enable = true;
+    domain = "localhost";
+    analytics.reporting.enable = false;
+    port = 2538;
+
+    # database = {
+    #   type = "postgres";
+    #   host = "127.0.0.1:2548";
+    #   name = "titan_grafana_db";
+    #   user = "root";
+    # };
+  };
+  # enable the GPUs
+  services.nginx.enable = true;
+  # nginx reverse proxy to access grafana from the outside
+  services.nginx.virtualHosts.${config.services.grafana.domain} = {
+    locations."/" = {
+      proxyPass = "http://127.0.0.1:${toString config.services.grafana.port}";
+      proxyWebsockets = true;
+    };
+  };
+  services.prometheus = {
+    enable = true;
+    port = 9001;
+  };
+  services.prometheus = {
+    exporters = {
+      node = {
+        enable = true;
+        enabledCollectors = [ "systemd" ];
+        port = 9002;
+      };
+    };
+    scrapeConfigs = [{
+      job_name = "titan";
+      static_configs = [{
+        targets = [
+          "127.0.0.1:${toString config.services.prometheus.exporters.node.port}"
+        ];
+      }];
+    }];
+  };
+  services.xserver.enable = true;
+  services.xserver.videoDrivers = [ "nvidia" ];
+  # FIXME loki doesn't run
+  # services.loki = {
+  #   enable = true;
+  #   configFile = ./loki.yaml;
+  # };
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
