@@ -22,6 +22,26 @@ with lib; {
       bind \cs 'pet-select --layout=bottom-up'
     end
   '';
+  xdg.configFile."fish/functions/mtx.fish".text = mkAfter ''
+    function mtx
+      alacritty -e mosh $argv[1] -- tmuxinator $argv[2] &
+    end
+  '';
+  xdg.configFile."fish/functions/mty.fish".text = mkAfter ''
+    function mty
+      alacritty -e mosh $argv[1] &
+    end
+  '';
+  xdg.configFile."fish/functions/stx.fish".text = mkAfter ''
+    function stx
+      alacritty -e ssh $argv[1] -t tmuxinator $argv[2] &
+    end
+  '';
+  xdg.configFile."fish/functions/sty.fish".text = mkAfter ''
+    function sty
+      alacritty -e ssh $argv[1] &
+    end
+  '';
   programs.fish = {
     enable = true;
 
