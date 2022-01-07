@@ -68,11 +68,13 @@ let
     "jetbrains-space"
     "jetbrains-toolbox"
   ];
+  fonts = nerdFonts ++ programmerFonts;
 in {
   homebrew = {
     enable = true;
     autoUpdate = true;
     cleanup = "none";
+
     taps = [
       "homebrew/cask"
       "homebrew/cask-drivers"
@@ -84,6 +86,7 @@ in {
       "railwaycat/emacsmacport"
     ];
 
+    # install apps from Mac App Store
     masApps = {
       "1Password" = 1333542190;
       "HazeOver" = 430798174;
@@ -92,24 +95,21 @@ in {
       "Drafts" = 1435957248;
       "WireGuard" = 1451685025;
       "GoodNotes 5" = 1444383602;
-      "Spike Email" = 707452888;
       "Things 3" = 904280696;
       "Rouzshomar" = 476295182;
-      # "WireGuard" = 1451685025;
+      "HP Smart for Desktop" = 1474276998;
+      "Slack for Desktop" = 803453959;
+      # "Spike Email" = 707452888; # FIXME this gets installed every fukcing time I switch
     };
 
-    casks = [ "darktable" "firefox-beta" "amethyst" "alacritty" ] ++ nerdFonts
-      ++ programmerFonts;
+    casks = [ "discord" "darktable" "firefox-beta" "amethyst" "dropbox" ]
+      ++ fonts;
     brews = [ "pkg-config" "svn" "openssl@1.1" ];
-    # brews = [
-    #   # "emacs-plus@28"
-    #   ''''
-    # ];
+
     # brew "emacs-plus@28", args:["with-ctags", "with-debug", "with-xwidgets", "with-native-comp", "with-dbus", "with-mailutils", "with-emacsicon4-icon"]
-    # brew "koekeishiya/formulae/yabai", args: [ "287546ac23c36f687842905e2d7e5a93746994f9" ]
     extraConfig = ''
-      brew "emacs-mac", args:["with-rsvg", "with-emacs-big-sur-icon", "with-mac-metal", "with-starter", "with-ctags"]
-      brew "emacs-plus@28", args:["with-ctags", "with-debug", "with-xwidgets", "with-native-comp", "with-dbus", "with-mailutils", "with-emacsicon4-icon"]
+      brew "emacs-mac", args:["with-rsvg", "with-emacs-big-sur-icon", "with-no-title-bars", "with-mac-metal", "with-starter", "with-ctags"]
+      brew "koekeishiya/formulae/yabai", args: [ "HEAD" ]
     '';
   };
 }
