@@ -10,6 +10,7 @@ yabai -m rule --add app="App Store" manage=off
 yabai -m rule --add app="FaceTime" manage=off
 yabai -m rule --add app="Wally" manage=off
 yabai -m rule --add app="Alfred Preferences" manage=off
+yabai -m rule --add app="Emacs" manage=on
 
 yabai -m config layout bsp
 yabai -m config left_padding 6
