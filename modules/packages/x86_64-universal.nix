@@ -19,7 +19,6 @@ with pkgs; [
   tcl
   lice
   arion
-  libvterm
   pciutils
 
   # text search & manipulation programs
@@ -80,7 +79,7 @@ with pkgs; [
 
   wget
   w3m
-  # thefuck FIXME
+  thefuck
   pet
   fasd
   jq

@@ -2,7 +2,7 @@
 
 {
   services.skhd = {
-    enable = false;
+    enable = true;
     skhdConfig = ''
       ### alacritty terminal
 
