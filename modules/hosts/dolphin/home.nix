@@ -19,8 +19,13 @@ in {
 
   programs.ssh.matchBlocks = {
     "titan" = {
-      hostname = "192.168.1.6";
+      hostname = "titan.leopard-beta.ts.net";
       user = "ashkan";
+    };
+    "learner" = {
+      hostname = "192.168.1.101";
+      user = "ashkan";
+      identityFile = "~/.ssh/id_learner";
     };
   };
 
