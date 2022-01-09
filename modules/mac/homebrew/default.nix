@@ -99,6 +99,7 @@ in {
       "Rouzshomar" = 476295182;
       "HP Smart for Desktop" = 1474276998;
       "Slack for Desktop" = 803453959;
+      "Sleep Control Centre" = 946798523;
       # "Spike Email" = 707452888; # FIXME this gets installed every fukcing time I switch
     };
 
