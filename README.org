@@ -1,22 +1,14 @@
 #+TITLE: Nix Machines
 
 * Table of Contents :TOC_3:
-- [[#introduction][Introduction]]
 - [[#instructions][Instructions]]
-  - [[#mac-os][Mac OS]]
     - [[#installation][Installation]]
     - [[#uninstallation][Uninstallation]]
 - [[#hosts][Hosts]]
   - [[#define-a-new-host][Define a new host]]
 
-* Introduction
-This repository is an on-going effort to move my dotfiles to ~nix~ package manager
-from ~homebrew~. Nix is a purely functional language and package manager.
-
 * Instructions
-Currently, there is a bootstrap script for Mac OS. I need to add scripts for
-Linux machines as well.
-** Mac OS
+Currently, there is a bootstrap script for Mac OS** Mac OS
 *** Installation
 1. Clone this repository to a directory of your choice. I usually clone it in
    ~$xdg_config_home/nixpkgs~.
@@ -36,11 +28,14 @@ bin/yo-mac-installer uninstall
 Note this will not remove the nix configuration files.
 
 * Hosts
-|-----------------+--------+-------------------------|
-| Host            | OS     | Notes                   |
-|-----------------+--------+-------------------------|
-| zebra.lan       | Darwin | My personal MacBook Pro |
-| chi-aaleali-Mac | Darwin | Work MacBook Pro        |
+|-----------------+--------+---------|
+| Host            | OS     | Notes   |
+|-----------------+--------+---------|
+| zebra           | Darwin | X86_64  |
+| chi-aaleali-Mac | Darwin | X86_64  |
+| dolphin         | Darwin | aarch64 |
+| titan           | Linux  | x86_64  |
+|-----------------+--------+---------|
 
 ** Define a new host
 1) Create a new directory with the machine's host name in

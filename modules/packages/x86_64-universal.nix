@@ -19,6 +19,7 @@ with pkgs; [
   tcl
   lice
   arion
+  pciutils
 
   # text search & manipulation programs
   gawk
@@ -65,23 +66,25 @@ with pkgs; [
   sqlite
   exiftool
 
-  # git
+  # git and friends
   # git-sync FIXME
   gitAndTools.gh
-  gitAndTools.grv
+  # gitAndTools.grv
   gitAndTools.gita
   gitAndTools.ghorg
   gitAndTools.git-open
   gitAndTools.gh
   git-lfs
+  subversion
 
   wget
   w3m
-  # thefuck FIXME
+  thefuck
   pet
   fasd
   jq
   fzf
+  openssl
   tealdeer
   most
   # xscreensaver
@@ -105,7 +108,7 @@ with pkgs; [
   metals
 
   # Nix
-  nixops
+  # nixops
   nixfmt
   nix-doc
   manix
@@ -129,6 +132,8 @@ with pkgs; [
   lldb
   llvm
   cmake
+  gnumake
+  libtool
   # libgccjit FIXME
 
   # Rust

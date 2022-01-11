@@ -1,6 +1,6 @@
 { pkgs }:
 
 with pkgs; [
-  xquartz
+  # xquartz
   reattach-to-user-namespace
 ]

@@ -3,8 +3,6 @@
   "..." = "cd ../..";
   "...." = "cd ../../..";
 
-  "iw" = "cd '/Users/ashkanaleali/Library/Mobile Documents/com~apple~CloudDocs/Workspace'";
-  "ir" = "cd '/Users/ashkanaleali/Library/Mobile Documents/com~apple~CloudDocs/Workspace/REPO'";
 
   # abbreviations
   h = "home-manager";

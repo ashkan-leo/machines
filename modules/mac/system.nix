@@ -71,7 +71,7 @@
       NSUseAnimatedFocusRing = true;
 
       # auto hide the menue bar by default
-      _HIHideMenuBar = true;
+      _HIHideMenuBar = false;
 
       NSScrollAnimationEnabled = true;
 

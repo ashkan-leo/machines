@@ -4,6 +4,11 @@
   services.skhd = {
     enable = true;
     skhdConfig = ''
+      ### alacritty terminal
+
+      alt + shift + ctrl - 9 : alacritty
+      fn - 9 : alacritty
+
       ### yabai
 
       # NOTE I use the following convention to ensure I can find all the keys
@@ -146,134 +151,5 @@
       alt + shift + ctrl - t : yabai -m window --toggle float;\
                                yabai -m window --grid 4:4:1:1:2:2
     '';
-    # skhdConfig = ''
-    #   # FIXME Emacs
-    #   # FIXME not loading the configuration
-    #   # cmd + shift - e : nix-shell -p zsh --run "open /run/current-system/Applications/Emacs.app/Contents/MacOS/Emacs"
-
-    #   ## balance size of windows
-    #   alt + shift - 0 : yabai -m space --balance
-
-    #   ## make floating window fill screen
-    #   alt + cmd - up : yabai -m window --grid 1:1:0:0:1:1
-
-    #   ## make floating window fill left-half of screen
-    #   alt + cmd - left : yabai -m window --grid 1:2:0:0:1:1
-
-    #   ## make floating window fill right-half of screen
-    #   alt + cmd - right : yabai -m window --grid 1:2:1:0:1:1
-
-    #   ## send window to space and follow focus
-    #   fn + shift - x : yabai -m window --space recent;\
-    #                    yabai -m space --focus recent
-    #   fn + shift - z : yabai -m window --space prev;\
-    #                    yabai -m space --focus prev
-    #   fn + shift - m : yabai -m window --space next;\
-    #                    yabai -m space --focus next
-    #   fn + shift - 1 : yabai -m window --space  1;\
-    #                    yabai -m space --focus 1
-    #   fn + shift - 2 : yabai -m window --space  2;\
-    #                    yabai -m space --focus 2
-    #   fn + shift - 3 : yabai -m window --space  3;\
-    #                    yabai -m space --focus 3
-    #   fn + shift - 4 : yabai -m window --space  4;\
-    #                    yabai -m space --focus 4
-    #   fn + shift - 5 : yabai -m window --space  5;\
-    #                    yabai -m space --focus 5
-    #   fn + shift - 6 : yabai -m window --space  6;\
-    #                    yabai -m space --focus 6
-    #   fn + shift - 7 : yabai -m window --space  7;\
-    #                    yabai -m space --focus 7
-    #   fn + shift - 8 : yabai -m window --space  8;\
-    #                    yabai -m space --focus 8
-    #   fn + shift - 9 : yabai -m window --space  9;\
-    #                    yabai -m space --focus 9
-    #   fn + shift - 0 : yabai -m window --space 10;\
-    #                    yabai -m space --focus 10
-
-    #   # Hyper variations
-    #   cmd + alt + ctrl + shift - x : yabai -m window --space recent;\
-    #                    yabai -m space --focus recent
-    #   cmd + alt + ctrl + shift - z : yabai -m window --space prev;\
-    #                    yabai -m space --focus prev
-    #   cmd + alt + ctrl + shift - m : yabai -m window --space next;\
-    #                    yabai -m space --focus next
-    #   cmd + alt + ctrl + shift - 1 : yabai -m window --space  1;\
-    #                    yabai -m space --focus 1
-    #   cmd + alt + ctrl + shift - 2 : yabai -m window --space  2;\
-    #                    yabai -m space --focus 2
-    #   cmd + alt + ctrl + shift - 3 : yabai -m window --space  3;\
-    #                    yabai -m space --focus 3
-    #   cmd + alt + ctrl + shift - 4 : yabai -m window --space  4;\
-    #                    yabai -m space --focus 4
-    #   cmd + alt + ctrl + shift - 5 : yabai -m window --space  5;\
-    #                    yabai -m space --focus 5
-    #   cmd + alt + ctrl + shift - 6 : yabai -m window --space  6;\
-    #                    yabai -m space --focus 6
-    #   cmd + alt + ctrl + shift - 7 : yabai -m window --space  7;\
-    #                    yabai -m space --focus 7
-    #   cmd + alt + ctrl + shift - 8 : yabai -m window --space  8;\
-    #                    yabai -m space --focus 8
-    #   cmd + alt + ctrl + shift - 9 : yabai -m window --space  9;\
-    #                    yabai -m space --focus 9
-    #   cmd + alt + ctrl + shift - 0 : yabai -m window --space 10;\
-    #                    yabai -m space --focus 10
-
-    #   ## destroy space
-    #   fn - q : yabai -m space --destroy
-
-    #   shift + alt + ctrl - q : yabai -m space --destroy
-
-    #   ## create space, move window and follow focus
-    #   fn + shift - a : yabai -m space --create && \
-    #                           index="$(yabai -m query --spaces --display | jq 'map(select(."native-fullscreen" == 0))[-1].index')" && \
-    #                           yabai -m window --space "''${index}" && \
-    #                           yabai -m space --focus "''${index}"
-    #   cmd + alt + ctrl + shift - a : yabai -m space --create && \
-    #                                  index="$(yabai -m query --spaces --display | jq 'map(select(."native-fullscreen" == 0))[-1].index')" && \
-    #                                  yabai -m window --space "''${index}" && \
-    #                                  yabai -m space --focus "''${index}"
-
-    #   ## create space and follow focus
-    #   fn + shift - s : yabai -m space --create;\
-    #                    index="$(yabai -m query --displays --display | jq '.spaces[-1]')" && \
-    #                    yabai -m space --focus "''${index}"
-    #   cmd + alt + ctrl + shift - s : yabai -m space --create;\
-    #                                  index="$(yabai -m query --displays --display | jq '.spaces[-1]')" && \
-    #                                  yabai -m space --focus "''${index}"
-
-    #   ## rotate tree
-    #   cmd + alt - y : yabai -m space --rotate 90
-    #   cmd + alt - n : yabai -m space --rotate 180
-    #   cmd + alt - k : yabai -m space --rotate 270
-
-    #   ## toggle window fullscreen zoom
-    #   fn - f : yabai -m window --toggle zoom-fullscreen
-    #   shift + alt + ctrl - f : yabai -m window --toggle zoom-fullscreen
-
-    #   ## toggle window native fullscreen
-    #   fn + shift - f : yabai -m window --toggle native-fullscreen
-    #   cmd + alt + ctrl + shift - f : yabai -m window --toggle native-fullscreen
-
-    #   ## toggle window split type
-    #   fn - e : yabai -m window --toggle split
-    #   shift + alt + ctrl - e : yabai -m window --toggle split
-
-    #   ## float / unfloat window and center on screen
-    #   fn - t : yabai -m window --toggle float;\
-    #            yabai -m window --grid 4:4:1:1:2:2
-    #   shift + alt + ctrl - t : yabai -m window --toggle float;\
-    #                          yabai -m window --grid 4:4:1:1:2:2
-
-    #   ## toggle sticky
-    #   fn - s : yabai -m window --toggle sticky
-    #   shift + alt + ctrl - s : yabai -m window --toggle sticky
-
-    #   ## toggle sticky, float and resize to picture-in-picture size
-    #   fn - p : yabai -m window --toggle sticky;\
-    #            yabai -m window --grid 5:5:4:0:1:1
-    #   shift + alt + ctrl - p : yabai -m window --toggle sticky;\
-    #                          yabai -m window --grid 5:5:4:0:1:1
-    # '';
   };
 }

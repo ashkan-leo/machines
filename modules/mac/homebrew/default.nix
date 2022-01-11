@@ -59,46 +59,22 @@ let
     # fira-code family
     "font-fira-mono"
     "font-firago"
-    "font-fira-mono-for-powerline"
     "font-fira-sans"
-    "font-fira-sans-condensed"
-    # "font-fira-sans-extra-condensed"
 
     # iosevka family
     "font-iosevka"
-    # "font-iosevka-curly-slab"
-    # "font-iosevka-slab"
-    # "font-iosevka-ss02"
-    # "font-iosevka-ss05"
-    # "font-iosevka-ss08"
-    # "font-iosevka-ss11"
-    # "font-iosevka-ss14"
-    # "font-iosevka-ss17"
-    # "font-iosevka-aile"
-    # "font-iosevka-etoile"
-    # "font-iosevka-ss03"
-    # "font-iosevka-ss06"
-    # "font-iosevka-ss09"
-    # "font-iosevka-ss12"
-    # "font-iosevka-ss15"
-    # "font-iosevka-curly"
-    # "font-iosevka-ss01"
-    # "font-iosevka-ss04"
-    # "font-iosevka-ss07"
-    # "font-iosevka-ss10"
-    # "font-iosevka-ss13"
-    # "font-iosevka-ss16"
 
-    # # jetbrain family
-    # # "font-jetbrains-mono" the jetbrains mono nerd fonts installs this as well
+    # jetbrain family
     "jetbrains-space"
     "jetbrains-toolbox"
   ];
+  fonts = nerdFonts ++ programmerFonts;
 in {
   homebrew = {
     enable = true;
     autoUpdate = true;
-    cleanup = "zap";
+    cleanup = "none";
+
     taps = [
       "homebrew/cask"
       "homebrew/cask-drivers"
@@ -107,23 +83,34 @@ in {
       "homebrew/core"
       "homebrew/services"
       "d12frosted/emacs-plus"
+      "railwaycat/emacsmacport"
     ];
 
-    # FIXME App store apps gives an error.
+    # install apps from Mac App Store
     masApps = {
-      # "1Password" = 1107421413;
-      # "WireGuard" = 1451685025;
+      "1Password" = 1333542190;
+      "HazeOver" = 430798174;
+      "Pocket" = 568494494;
+      "Tailscale" = 1475387142;
+      "Drafts" = 1435957248;
+      "WireGuard" = 1451685025;
+      "GoodNotes 5" = 1444383602;
+      "Things 3" = 904280696;
+      "Rouzshomar" = 476295182;
+      "HP Smart for Desktop" = 1474276998;
+      "Slack for Desktop" = 803453959;
+      "Sleep Control Centre" = 946798523;
+      # "Spike Email" = 707452888; # FIXME this gets installed every fukcing time I switch
     };
 
-    casks = [ "darktable" ] ++ nerdFonts ++ programmerFonts;
-    brews = [ "pkg-config" ];
-    # brews = [
-    #   # "emacs-plus@28"
-    #   ''''
-    # ];
+    casks = [ "discord" "darktable" "firefox-beta" "amethyst" "dropbox" ]
+      ++ fonts;
+    brews = [ "pkg-config" "svn" "openssl@1.1" ];
+
     # brew "emacs-plus@28", args:["with-ctags", "with-debug", "with-xwidgets", "with-native-comp", "with-dbus", "with-mailutils", "with-emacsicon4-icon"]
     extraConfig = ''
-      brew "emacs-mac", args:["--with-rsvg", "--with-no-title-bars", "--with-emacs-big-sur-icon", "--with-mac-metal"]
+      brew "emacs-mac", args:["with-rsvg", "with-emacs-big-sur-icon", "with-no-title-bars", "with-mac-metal", "with-starter", "with-ctags"]
+      brew "koekeishiya/formulae/yabai", args: [ "HEAD" ]
     '';
   };
 }
