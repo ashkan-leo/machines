@@ -134,19 +134,12 @@
             host = "nano";
           };
         };
-        toby = nixpkgs.lib.nixosSystem {
+        titan = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = linuxModules {
             user = "ashkan";
-            host = "learner";
+            host = "titan";
           };
-        };
-        titan = nixpkgs.lib.nixosSystem {
-	  system = "x86_64-linux";
-	  modules = linuxModules {
-	    user = "ashkan";
-	    host = "titan";
-	  };
         };
       };
     };
