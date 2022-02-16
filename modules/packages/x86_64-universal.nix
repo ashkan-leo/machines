@@ -109,7 +109,7 @@ with pkgs; [
   # Nix
   # nixops
   nixfmt
-  nix-doc
+  # nix-doc FIXME
   manix
   nix-prefetch-git
   nix-prefetch-github

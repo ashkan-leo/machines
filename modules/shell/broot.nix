@@ -3,7 +3,7 @@
 {
 
   programs.broot = {
-    enable = true;
+    enable = false;
 
     # https://dystroy.org/broot/skins/
     skin = {

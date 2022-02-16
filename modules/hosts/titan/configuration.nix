@@ -56,8 +56,10 @@ in {
   # You should generally set this to the total number of logical cores in your system.
   # $ sysctl -n hw.ncpu
   nix = {
-    maxJobs = 32;
-    buildCores = 32;
+    settings = {
+      max-jobs = 32;
+      cores = 32;
+    };
     extraOptions = ''
       # add these lines to prevent garbage collection interfering with direnv-nix
       keep-outputs = true
