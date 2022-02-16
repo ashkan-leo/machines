@@ -19,17 +19,17 @@
       show_cpu_frequency = true;
       show_cpu_usage = true;
       enable_mouse = true;
-      fields = [
-        "PID"
-        "USER"
-        "PRIORITY"
-        "M_RESIDENT"
-        "M_SIZE"
-        "PERCENT_CPU"
-        "PERCENT_MEM"
-        "TIME"
-        "COMM"
-      ];
+      # fields = [
+      #   "PID"
+      #   "USER"
+      #   "PRIORITY"
+      #   "M_RESIDENT"
+      #   "M_SIZE"
+      #   "PERCENT_CPU"
+      #   "PERCENT_MEM"
+      #   "TIME"
+      #   "COMM"
+      # ];
       left_meter_mode = [ "LeftCPUs4" "Memory" "Blank" "Uptime" ];
       right_meter_mode = [ "RightCPUs4" "Swap" "Blank" "LoadAverage" ];
     };

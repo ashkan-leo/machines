@@ -1,6 +1,10 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
+let
+  nvidia_x11 = config.boot.kernelPackages.nvidia_x11;
+  nvidia_gl = nvidia_x11.out;
+  nvidia_gl_32 = nvidia_x11.lib32;
 
-{
+in {
   imports = [ # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ../../network/tailscale.nix
@@ -53,7 +57,17 @@
   # $ sysctl -n hw.ncpu
   nix = {
     maxJobs = 32;
-    buildCores = 0;
+    buildCores = 32;
+    extraOptions = ''
+      # add these lines to prevent garbage collection interfering with direnv-nix
+      keep-outputs = true
+      keep-derivations = true
+    '';
+  };
+  nixpkgs.config = {
+    allowUnfree = true;
+    allowBroken = true;
+    cudaSupport = true;
   };
 
   # enable mosh and open associate ports
@@ -91,6 +105,9 @@
     fish
     zsh
     bashInteractive
+    # cudatoolkit
+    nvidia_x11
+    tmux
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -149,8 +166,32 @@
       }];
     }];
   };
-  services.xserver.enable = true;
-  services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver = {
+    enable = true;
+    exportConfiguration = true;
+    videoDrivers = [ "nvidia" ];
+    updateDbusEnvironment = true;
+    displayManager.startx.enable = true;
+    deviceSection = ''
+      Option         "AllowEmptyInitialConfiguration"
+    '';
+  };
+  hardware.nvidia = {
+    nvidiaPersistenced = true;
+    # modesetting.enable = true;
+    # powerManagement.finegrained = true;
+    powerManagement.enable = true;
+  };
+  boot.extraModulePackages = [ nvidia_x11 ];
+
+  # systemd.services.nvidia-fan-controller = {
+  #   script = ''
+  #     DISPLAY=:0 XAUTHORITY=/var/run/lightdm/root/:0 /run/current-system/sw/bin/nvidia-settings -a [gpu:0]/GPUFanControlState=1
+  #     DISPLAY=:0 XAUTHORITY=/var/run/lightdm/root/:0 /run/current-system/sw/bin/nvidia-settings -a [gpu:1]/GPUFanControlState=1
+  #         '';
+  #   wantedBy = [ "multi-user.target" ];
+  # };
+  # services.xserver.videoDrivers = [ "nvidia" ];
   # FIXME loki doesn't run
   # services.loki = {
   #   enable = true;

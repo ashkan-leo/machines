@@ -19,10 +19,6 @@
   tx = "tmuxinator";
   ec = "emacsclient -c";
 
-  # force python 3 everywhere
-  python = "python3";
-  pip = "pip3";
-
   # ssh = "TERM=xterm-256color ssh";
 
   # create a default tmux session and connect to it

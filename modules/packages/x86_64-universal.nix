@@ -99,7 +99,6 @@ with pkgs; [
   fswatch
   watchman
 
-
   # Scala
   scala
   ammonite
@@ -120,9 +119,10 @@ with pkgs; [
 
   # Python
   poetry
-  nodePackages.pyright
-  python39Packages.nose
-  pipenv
+  # nodejs
+  # nodePackages.pyright
+  # python39Packages.nose
+  # pipenv
 
   # Kubernetese
   # minikube
@@ -139,7 +139,6 @@ with pkgs; [
   # Rust
   rls
   nodePackages.coc-rls
-
 
   # Shell
   nodePackages.bash-language-server

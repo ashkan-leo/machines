@@ -106,6 +106,7 @@
         # the host names should match exactly to the system $HOST
         # TODO make this functionality more robust -- change $HOST if needed
         zebra.lan = darwin.lib.darwinSystem {
+          system = "x86_64-darwin";
           modules = darwinModules {
             user = "ashkanaleali";
             host = "zebra";
@@ -126,14 +127,6 @@
         };
       };
       nixosConfigurations = {
-        ## The linode nano instance
-        nano = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          modules = linuxModules {
-            user = "ashkanaleali";
-            host = "nano";
-          };
-        };
         titan = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = linuxModules {

@@ -50,4 +50,10 @@
       }
     '';
   };
+
+  # Enable fish integration for direnv
+  # NOTE: It seems this should happen automatically. But it doesn't...
+  programs.fish.shellInit = lib.mkAfter ''
+    eval (direnv hook fish)
+  '';
 }
