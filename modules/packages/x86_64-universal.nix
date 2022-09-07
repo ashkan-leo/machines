@@ -20,6 +20,7 @@ with pkgs; [
   lice
   arion
   pciutils
+  # modd FIXME
 
   # text search & manipulation programs
   gawk
@@ -129,7 +130,7 @@ with pkgs; [
 
   # C/C++
   gcc
-  lldb
+  # lldb #FIXME
   llvm
   cmake
   gnumake
@@ -137,7 +138,7 @@ with pkgs; [
   # libgccjit FIXME
 
   # Rust
-  rls
+  # rls FIXME
   nodePackages.coc-rls
 
   # Shell
@@ -158,6 +159,7 @@ with pkgs; [
   ### Type Setting
   ###
   texlive.combined.scheme-full
+  texlab
   pandoc
 
   ###

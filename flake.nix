@@ -52,14 +52,12 @@
         nix = {
           package = pkgs.nixFlakes;
           extraOptions = "experimental-features = nix-command flakes";
-          binaryCaches = [
-            "https://cache.nixos.org/"
-            # "https://hardselius.cachix.org"
-          ];
-          binaryCachePublicKeys = [
-            "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-            # "hardselius.cachix.org-1:wdmClEq/2j8gEKJ5vLLCmpgCDumsyPMO6iVWKkYHKP0="
-          ];
+          settings = {
+            substituters = [ "https://cache.nixos.org/" ];
+            trusted-public-keys = [
+              "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+            ];
+          };
         };
         services.nix-daemon.enable = true;
       };
@@ -72,7 +70,7 @@
           home-manager.darwinModules.home-manager
           {
             nixpkgs = nixpkgsConfig;
-            users.nix.configureBuildUsers = true;
+            nix.configureBuildUsers = true;
             users.users.${user}.home = "/Users/${user}";
             home-manager = {
               useGlobalPkgs = true;

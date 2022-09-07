@@ -68,12 +68,18 @@ let
     "jetbrains-space"
     "jetbrains-toolbox"
   ];
-  fonts = nerdFonts ++ programmerFonts;
+  etcFonts = [
+    "font-roboto-slab"
+    "font-lato"
+  ];
+  fonts = nerdFonts ++ programmerFonts ++ etcFonts;
 in {
   homebrew = {
     enable = true;
+    onActivation = {
+      cleanup = "none";
     autoUpdate = true;
-    cleanup = "none";
+    };
 
     taps = [
       "homebrew/cask"
@@ -88,7 +94,7 @@ in {
 
     # install apps from Mac App Store
     masApps = {
-      "1Password" = 1333542190;
+      # "1Password" = 1333542190;
       "HazeOver" = 430798174;
       "Pocket" = 568494494;
       "Tailscale" = 1475387142;
@@ -110,7 +116,7 @@ in {
     # brew "emacs-plus@28", args:["with-ctags", "with-debug", "with-xwidgets", "with-native-comp", "with-dbus", "with-mailutils", "with-emacsicon4-icon"]
     extraConfig = ''
       brew "emacs-mac", args:["with-rsvg", "with-emacs-big-sur-icon", "with-no-title-bars", "with-mac-metal", "with-starter", "with-ctags"]
-      brew "koekeishiya/formulae/yabai", args: [ "HEAD" ]
+      brew "koekeishiya/formulae/yabai"
     '';
   };
 }

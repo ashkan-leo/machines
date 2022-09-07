@@ -63,7 +63,7 @@
 
       # Enable spring loading the directories
       "com.apple.springing.enabled" = true;
-      "com.apple.springing.delay" = "0.0";
+      "com.apple.springing.delay" = 0.0;
 
       # Enable tap to click on the trackpad
       "com.apple.mouse.tapBehavior" = 1;
@@ -91,7 +91,7 @@
       NSAutomaticSpellingCorrectionEnabled = false;
 
       # Increase window resize speed for Cocoa applications
-      NSWindowResizeTime = "0.001";
+      NSWindowResizeTime = 0.001;
 
       # Expand the print dialog by default
       PMPrintingExpandedStateForPrint = true;
