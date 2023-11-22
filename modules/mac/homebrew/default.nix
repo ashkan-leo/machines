@@ -111,7 +111,7 @@ in {
 
     casks = [ "discord" "darktable" "firefox-beta" "amethyst" "dropbox" ]
       ++ fonts;
-    brews = [ "pkg-config" "svn" "openssl@1.1" ];
+    brews = [ "pkg-config" "svn" "openssl@1.1" "alacritty"];
 
     # brew "emacs-plus@28", args:["with-ctags", "with-debug", "with-xwidgets", "with-native-comp", "with-dbus", "with-mailutils", "with-emacsicon4-icon"]
     extraConfig = ''
