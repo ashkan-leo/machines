@@ -115,7 +115,7 @@ in {
 
     # brew "emacs-plus@28", args:["with-ctags", "with-debug", "with-xwidgets", "with-native-comp", "with-dbus", "with-mailutils", "with-emacsicon4-icon"]
     extraConfig = ''
-      brew "emacs-mac", args:["with-rsvg", "with-emacs-big-sur-icon", "with-no-title-bars", "with-mac-metal", "with-starter", "with-ctags"]
+      brew "emacs-mac", args:["with-no-title-bars", "with-mac-metal", "with-starter", "with-ctags", "with-native-compilation", "with-imagemagick", "with-native-compilation"]
       brew "koekeishiya/formulae/yabai"
     '';
   };

@@ -6,7 +6,7 @@
     enable = false;
 
     # https://dystroy.org/broot/skins/
-    skin = {
+    settings.skin = {
       # NOTE Solarized-dark
       default =
         "rgb(131, 148, 150) rgb(0, 43, 54) / rgb(131, 148, 150) rgb(7, 54, 66)";

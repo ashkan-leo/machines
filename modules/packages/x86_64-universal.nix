@@ -61,7 +61,7 @@ with pkgs; [
   mdl
 
   # file system tools
-  exa
+  eza
   lsd
   ranger
   sqlite

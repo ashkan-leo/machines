@@ -55,7 +55,7 @@
 
       font = {
         size = 14.0;
-        use_thin_strokes = true;
+        # use_thin_strokes = true;
 
         normal = {
           family = "JetBrainsMono Nerd Font";
@@ -100,7 +100,6 @@
       mouse.hide_when_typing = true;
       selection.save_to_clipboard = true;
       live_config_reload = true;
-      alt_send_esc = false;
 
       key_bindings = [
         {
