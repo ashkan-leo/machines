@@ -125,7 +125,18 @@
             host = "chi-aaleali-mac";
           };
         };
+
+
+        ashkaan-mbp = darwin.lib.darwinSystem {
+          system = "aarch64-darwin";
+          modules = darwinModules { 
+            user = "ashkaan";
+            host = "ashkaan-mbp"; 
+          };
+        };
       };
+
+
       nixosConfigurations = {
         titan = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
