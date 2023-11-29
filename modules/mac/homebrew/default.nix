@@ -55,7 +55,6 @@ let
     "font-ubuntu-mono-nerd-font"
   ];
   programmerFonts = [
-
     # fira-code family
     "font-fira-mono"
     "font-firago"
@@ -78,7 +77,13 @@ in {
     enable = true;
     onActivation = {
       cleanup = "none";
-    autoUpdate = true;
+
+      # this will cause the nix switch calls to auto-upgrade
+      # brew packages every time which causes it to be non-idempotant
+      # a better approach is to upgrade the brew packages manually
+      upgrade = false;
+
+      autoUpdate = true;
     };
 
     taps = [
@@ -109,9 +114,9 @@ in {
       # "Spike Email" = 707452888; # FIXME this gets installed every fukcing time I switch
     };
 
-    casks = [ "discord" "darktable" "firefox-beta" "amethyst" "dropbox" ]
+    casks = [ "discord" "darktable" "firefox-beta" "amethyst" "dropbox" "alacritty"]
       ++ fonts;
-    brews = [ "pkg-config" "svn" "openssl@1.1" "alacritty"];
+    brews = [ "pkg-config" "svn" "openssl@1.1"];
 
     # brew "emacs-plus@28", args:["with-ctags", "with-debug", "with-xwidgets", "with-native-comp", "with-dbus", "with-mailutils", "with-emacsicon4-icon"]
     extraConfig = ''
