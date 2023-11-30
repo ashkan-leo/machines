@@ -2,7 +2,7 @@
 
 {
   imports =
-    [ ./skhd.nix ./system.nix ./programs.nix ./services.nix ./homebrew];
+    [ ./skhd.nix ./system.nix ./programs.nix ./services.nix ./homebrew ./yabai];
 
   environment = {
     # a list of common environment vars (editor, etc.)

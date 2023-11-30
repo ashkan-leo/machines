@@ -5,7 +5,7 @@ let
   gitUserName = "ashkaan";
 
 in {
-  imports = [ ../../shell ../../term ../../mac/yabai ];
+  imports = [ ../../shell ../../term ];
 
   home.packages = import ../../packages/x86_64-darwin.nix { inherit pkgs; }
     ++ import ../../packages/x86_64-universal.nix { inherit pkgs; };
